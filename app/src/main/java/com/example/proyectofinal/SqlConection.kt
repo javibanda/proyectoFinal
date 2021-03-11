@@ -61,19 +61,14 @@ class SqlConection {
 
             var rss = st2.executeQuery("select c.id, c.name from region r join city c on (c.id_ca = r.id) where r.id = $id")
             var listCity = ArrayList<City>()
-            if (rss.next()){
+            while (rss.next()){
                 Log.d(":::Paso por aqui", name)
                 var idC = rss.getInt("c.id")
                 var nameC = rss.getString("c.name")
-
                 listCity.add(City(idC, nameC))
-
             }
-
             listRegion.add(Region(id, name, listCity))
-
         }
-
         return  listRegion
     }
 

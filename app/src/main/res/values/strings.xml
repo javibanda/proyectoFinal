@@ -1,3 +1,23 @@
 <resources>
-    <string name="app_name">proyectoFinal</string>
+    <string name="app_name" translatable="false">proyectoFinal</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="checkin">CHECK IN</string>
+    <string name="dni">Enter the ID Code</string>
+    <string name="name">Enter the name</string>
+    <string name="lastName">Enter the last name</string>
+    <string name="secondLastName">Enter the second last name</string>
+    <string name="email">Enter the email</string>
+    <string name="pass">Enter the password</string>
+    <string name="passConfirmation">Verify the password</string>
+    <string name="verify...">incorrect</string>
+    <string name="idInput">ID Code</string>
+    <string name="nameInput">name</string>
+    <string name="lastNameInput">last name</string>
+    <string name="secondLastNameInput">second last name</string>
+    <string name="emailInput" translatable="false">email</string>
+    <string name="passInput">pass</string>
+    <string name="dialogMensajePass">the password must contain: \nAt least eight places though\nA digit must occur at least once\nA lower case and a upper case must occur at least\nNo whitespace allowed in the entire string</string>
+
+
 </resources>

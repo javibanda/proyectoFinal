@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="checkin_textsize">16dp</dimen>
+
+    <dimen name="checkin_heigh">60dp</dimen>
+    <dimen name="checkin_paddingLeft">12dp</dimen>
+    <dimen name="checkin_paddingLeft_spinner">3dp</dimen>
+    <dimen name="checkin_margin">0dp</dimen>
+</resources>

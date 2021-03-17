@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lavanda"
+    tools:context=".Chekin">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/purple_500"
+        android:fontFamily="cursive"
+        android:gravity="center"
+        android:text="@string/checkin"
+        android:textColor="@color/white"
+        android:textColorHint="@color/lavanda"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/materialDni"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/checkin_heigh"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                >
+
+                <EditText
+                    android:id="@+id/etDni"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/checkin_heigh"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:background="@color/rosita"
+                    android:ems="10"
+                    android:hint="@string/dni" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/materialName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/checkin_heigh"
+                android:layout_marginStart="@dimen/checkin_margin"
+                android:layout_marginLeft="@dimen/checkin_margin"
+                android:layout_marginEnd="@dimen/checkin_margin"
+                android:layout_marginRight="@dimen/checkin_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialDni"
+
+                >
+
+                <EditText
+                    android:id="@+id/etName"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/checkin_heigh"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:background="@color/lavanda"
+                    android:ems="10"
+                    android:hint="@string/name" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/materialFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/checkin_heigh"
+                android:layout_marginStart="@dimen/checkin_margin"
+                android:layout_marginLeft="@dimen/checkin_margin"
+                android:layout_marginEnd="@dimen/checkin_margin"
+                android:layout_marginRight="@dimen/checkin_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialName"
+
+                >
+
+                <EditText
+                    android:id="@+id/etFirstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/checkin_heigh"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:background="@color/rosita"
+                    android:ems="10"
+                    android:hint="@string/lastName" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/materialSecondLastName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/checkin_heigh"
+                android:layout_marginStart="@dimen/checkin_margin"
+                android:layout_marginLeft="@dimen/checkin_margin"
+                android:layout_marginEnd="@dimen/checkin_margin"
+                android:layout_marginRight="@dimen/checkin_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialFirstName"
+
+                >
+
+                <EditText
+                    android:id="@+id/etSecondLastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/checkin_heigh"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:background="@color/lavanda"
+                    android:ems="10"
+                    android:hint="@string/secondLastName" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/materialEmail"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/checkin_heigh"
+                android:layout_marginStart="@dimen/checkin_margin"
+                android:layout_marginLeft="@dimen/checkin_margin"
+                android:layout_marginEnd="@dimen/checkin_margin"
+                android:layout_marginRight="@dimen/checkin_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialSecondLastName"
+
+                >
+
+                <EditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/checkin_heigh"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:background="@color/rosita"
+                    android:ems="10"
+                    android:hint="@string/email" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/materialPass"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/checkin_heigh"
+                android:layout_marginStart="@dimen/checkin_margin"
+                android:layout_marginLeft="@dimen/checkin_margin"
+                android:layout_marginEnd="@dimen/checkin_margin"
+                android:layout_marginRight="@dimen/checkin_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialEmail"
+
+                >
+
+                <EditText
+                    android:id="@+id/etPass"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/checkin_heigh"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:background="@color/lavanda"
+                    android:ems="10"
+                    android:hint="@string/pass" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/materialValidPass"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/checkin_heigh"
+                android:layout_marginStart="@dimen/checkin_margin"
+                android:layout_marginLeft="@dimen/checkin_margin"
+                android:layout_marginEnd="@dimen/checkin_margin"
+                android:layout_marginRight="@dimen/checkin_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialPass"
+                >
+
+                <EditText
+                    android:id="@+id/etValidPass"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/checkin_heigh"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:background="@color/rosita"
+                    android:ems="10"
+                    android:hint="@string/passConfirmation" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Spinner
+                android:id="@+id/spinerRegion"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/checkin_heigh"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialValidPass"
+                android:background="@color/lavanda"
+                />
+
+
+            <Spinner
+                android:id="@+id/spinerCity"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/checkin_heigh"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinerRegion"
+                android:background="@color/rosita" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:text="REGISTRARSE"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinerCity"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

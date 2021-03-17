@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="checkin">REGISTRO</string>
+    <string name="dni">Introduzca su DNI</string>
+    <string name="name">Introduzca su nombre</string>
+    <string name="lastName">"Introduzca su primer apellido "</string>
+    <string name="secondLastName">Introduzca su segundo apellido</string>
+    <string name="email">Introduzca su email</string>
+    <string name="pass">Introduzca la contraseña</string>
+    <string name="passConfirmation">Vuelva a introducir la contraseña</string>
+    <string name="verify...">incorrecto</string>
+    <string name="idInput">DNI</string>
+    <string name="nameInput">nombre</string>
+    <string name="lastNameInput">apellido</string>
+    <string name="secondLastNameInput">segundo apellido</string>
+    <string name="passInput">contraseña</string>
+    <string name="dialogMensajePass">La contraseña debe contener: \nAl menos 8 caracteres\nAl menos un digito\nAl menos un caracter en mayusculas y otro en minusculas\nNo puede contener espacios ni tabulaciones</string>
+</resources>

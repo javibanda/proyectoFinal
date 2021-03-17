@@ -25,7 +25,7 @@ class Region {
     }
 
     override fun toString(): String {
-        return "Region(id=$id, name='$name')"
+        return name
     }
 
 

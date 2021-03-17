@@ -23,7 +23,7 @@ class City {
 
 
     override fun toString(): String {
-        return "City(id=$id, name='$name')"
+        return name
     }
 
 

@@ -39,7 +39,6 @@ class DataManager {
                     listCity.add(City(idC, nameC))
                 }
                 listRegion.add(Region(id, name, listCity))
-
             }
             return listRegion
         }

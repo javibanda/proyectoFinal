@@ -64,6 +64,8 @@ class Chekin: AppCompatActivity(){
         }
     }
 
+
+
     override fun onResume() {
         super.onResume()
     }
@@ -199,8 +201,8 @@ class Chekin: AppCompatActivity(){
         return if(secondLastName.text.toString().isEmpty()){
             null
         }else{
-            val str = secondLastName.text.toString().toUpperCase()
-            str
+             return secondLastName.text.toString().toUpperCase()
+
         }
     }
 }

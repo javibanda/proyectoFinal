@@ -51,7 +51,6 @@ class Chekin: AppCompatActivity(){
         test.setOnClickListener {
             if(validInput()){
                 if(!uniqueDni(dni.text.toString())){
-                    Log.d(":::Datos", "el dni existe, no se realiza el inserInto")
                     setAlertDialog("YA EXISTE UNA CUENTA CON ESTE DNI")
                 }else if(!uniqueEmail(email.text.toString())){
                     setAlertDialog("YA EXISTE UNA CUENTA CON ESTE EMAIL")

@@ -1,6 +1,7 @@
 package com.example.proyectofinal.dataBase
 
 import com.example.proyectofinal.data.City
+import com.example.proyectofinal.data.KindProduct
 import com.example.proyectofinal.data.Region
 import com.example.proyectofinal.dataBase.SqlConection.SqlConection.getToken
 import java.sql.Connection
@@ -69,6 +70,18 @@ class DataManager {
                 prepareSqlConection.setInt(7, id_city)
                 prepareSqlConection.execute()
             }
+        }
+
+        fun listKindProduct(): List<KindProduct>{
+            val listKindProduct = ArrayList<KindProduct>()
+            val resultSet = conection.createStatement().executeQuery("SELECT * FROM kindProduct")
+            while (resultSet.next()) {
+                val id = resultSet.getInt("id")
+                val name = resultSet.getString("name")
+                val url = resultSet.getString("url")
+                listKindProduct.add(KindProduct(id, name, url))
+            }
+            return listKindProduct
         }
     }
 }

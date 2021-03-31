@@ -1,22 +1,18 @@
 package com.example.proyectofinal
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.StrictMode
-import android.util.Log
-import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.proyectofinal.dataBase.DataManager.DataManager.listKindProduct
 import com.example.proyectofinal.fragments.Fragment2
-import com.example.proyectofinal.lists.citys.MainFragment
+import com.example.proyectofinal.lists.category.CategoryFragment
 
 
 
 class MainActivity : AppCompatActivity() {
 
-    val fragment = MainFragment.newInstance()
+    val fragment = CategoryFragment.newInstance()
     val fragment2 = Fragment2.newInstance()
 
 

@@ -12,7 +12,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@color/purple_500"
+        android:background="@color/button"
         android:fontFamily="cursive"
         android:gravity="center"
         android:text="@string/checkin"

@@ -2,6 +2,8 @@ package com.example.proyectofinal
 
 import android.os.Bundle
 import android.os.StrictMode
+import android.view.View.inflate
+import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -16,9 +18,7 @@ class MainActivity : AppCompatActivity() {
     val fragment2 = Fragment2.newInstance()
 
 
-    private lateinit var btnFragment1: ImageView
-    private lateinit var btnFragment2: ImageView
-    private lateinit var btnFragment3: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -28,21 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         showFragment(fragment)
 
-        btnFragment1 = findViewById(R.id.btnFragment1)
-        btnFragment2 = findViewById(R.id.btnFragment2)
-        btnFragment3 = findViewById(R.id.btnFragment3)
-        focusButtonColor(btnFragment2)
-        btnFragment1.setOnClickListener {
-            focusButtonColor(btnFragment1)
-        }
 
-        btnFragment2.setOnClickListener {
-            focusButtonColor(btnFragment2)
-        }
-
-        btnFragment3.setOnClickListener {
-            focusButtonColor(btnFragment3)
-        }
     }
 
     fun showFragment(fragment: Fragment){
@@ -51,16 +37,11 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.commit()
     }
 
-    private fun focusButtonColor(button: ImageView){
-        unFocusAllButtonColor()
-        button.setColorFilter(R.color.design_default_color_primary_dark)
-    }
 
-    private fun unFocusAllButtonColor(){
-        btnFragment1.clearColorFilter()
-        btnFragment2.clearColorFilter()
-        btnFragment3.clearColorFilter()
-    }
+
+
+
+
 }
 
 

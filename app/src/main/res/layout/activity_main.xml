@@ -10,50 +10,22 @@
     <FrameLayout
         android:id="@+id/frameLayoutMain"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="80dp"
-        app:layout_constraintBottom_toBottomOf="@id/btnFragment1"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
-        android:id="@+id/btnFragment1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/button_border"
-        android:src="@drawable/ic_baseline_home_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnFragment2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayoutMain" />
-
-    <ImageView
-        android:id="@+id/btnFragment2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-
-        android:background="@drawable/button_border"
-        android:src="@drawable/ic_baseline_home_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnFragment3"
-        app:layout_constraintStart_toEndOf="@+id/btnFragment1"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayoutMain" />
-
-    <ImageView
-        android:id="@+id/btnFragment3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/button_border"
-        android:src="@drawable/ic_baseline_home_24"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnFragment2"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayoutMain" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/button_navigation_menu" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.example.proyectofinal.lists.category
+package com.example.proyectofinal.fragments.category
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

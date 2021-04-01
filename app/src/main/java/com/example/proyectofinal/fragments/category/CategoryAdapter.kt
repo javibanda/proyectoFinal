@@ -1,4 +1,4 @@
-package com.example.proyectofinal.lists.category
+package com.example.proyectofinal.fragments.category
 
 import android.view.View
 import android.view.ViewGroup

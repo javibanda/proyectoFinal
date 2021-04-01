@@ -2,13 +2,10 @@ package com.example.proyectofinal
 
 import android.os.Bundle
 import android.os.StrictMode
-import android.view.View.inflate
-import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.proyectofinal.fragments.Fragment2
-import com.example.proyectofinal.lists.category.CategoryFragment
+import com.example.proyectofinal.fragments.category.CategoryFragment
 
 
 

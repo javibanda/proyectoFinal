@@ -1,8 +1,6 @@
 package com.example.proyectofinal.dataBase
 
-import com.example.proyectofinal.data.City
-import com.example.proyectofinal.data.KindProduct
-import com.example.proyectofinal.data.Region
+import com.example.proyectofinal.data.*
 import com.example.proyectofinal.dataBase.SqlConection.SqlConection.getToken
 import java.sql.Connection
 
@@ -72,16 +70,59 @@ class DataManager {
             }
         }
 
-        fun listKindProduct(): List<KindProduct>{
-            val listKindProduct = ArrayList<KindProduct>()
-            val resultSet = conection.createStatement().executeQuery("SELECT * FROM kindProduct")
+        fun listCategory(): List<Category>{
+            val listKindProduct = ArrayList<Category>()
+            val resultSet = conection.createStatement().executeQuery("SELECT * FROM category")
             while (resultSet.next()) {
                 val id = resultSet.getInt("id")
                 val name = resultSet.getString("name")
                 val url = resultSet.getString("url")
-                listKindProduct.add(KindProduct(id, name, url))
+                listKindProduct.add(Category(id, name, url))
             }
             return listKindProduct
+        }
+
+        fun listProduct():List<Product>{
+            val listProduct = ArrayList<Product>()
+
+            val resultSet = conection.createStatement().executeQuery(
+                    "select pr.id, pr.name, pr.description, pr.price, pl.id, pl.name, c.id, c.name, c.url, AVG(r.rating) media" +
+                    " from product pr" +
+                    " join platform pl on (pl.id = id_platform)" +
+                    " join category c on (c.id = id_category)" +
+                    " join rating r on (pr.id = id_product )" +
+                    " group by pr.id"
+                   )
+            while (resultSet.next()){
+                val id = resultSet.getInt("pr.id")
+                val name = resultSet.getString("pr.name")
+                val description = resultSet.getString("pr.description")
+                val price = resultSet.getFloat("pr.price")
+                val idPlatform = resultSet.getInt("pl.id")
+                val namePlatform = resultSet.getString("pl.name")
+                val idCategory = resultSet.getInt("c.id")
+                val nameCategory = resultSet.getString("c.name")
+                val urlCategory = resultSet.getString("c.url")
+                val rating = resultSet.getFloat("media")
+
+                listProduct.add(Product(id, name, description, price, Category(idCategory, nameCategory, urlCategory), Platform(idPlatform, namePlatform), rating))
+            }
+
+            return listProduct
+        }
+
+        fun listProduct(idCategory: Int):List<Product>{
+            val listProduct = ArrayList<Product>()
+            if(idCategory == 1){
+                return listProduct()
+            }else{
+                for (i in listProduct()){
+                    if (i.category.id == idCategory){
+                        listProduct.add(i)
+                    }
+                }
+            }
+           return listProduct
         }
     }
 }

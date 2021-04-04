@@ -1,0 +1,28 @@
+PłayLink
+
+Tienda online de videojuegos
+
+PRIMER MODELO ENTIDAD-RELACCION DE LA BASE DE DATOS
+
+PERSON
+    id primary key
+    name varchar not null
+    lastName varchar not null
+    secondLastName varchar
+    email varchar not null
+    password varchar not null
+CITY
+    id int primary key
+    name varchar not null
+PRODUCT
+    id int primary key
+    name varchar not null
+    price double
+ORDER
+    id int primary key
+    dateOrder date not null
+    id_person int foreign key person(id)
+    id_product int foreign key product(id)
+
+
+

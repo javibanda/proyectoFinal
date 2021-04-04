@@ -82,7 +82,7 @@ class Chekin: AppCompatActivity(){
                     position: Int,
                     id: Long
             ) {
-                spinnerCity(spinerCity, datos[position].getCity())
+                spinnerCity(spinerCity, datos[position].city)
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 TODO("Not yet implemented")
@@ -104,7 +104,7 @@ class Chekin: AppCompatActivity(){
                     position: Int,
                     id: Long
             ) {
-                idCity = lista[position].getId()
+                idCity = lista[position].id
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 TODO("Not yet implemented")
@@ -116,6 +116,7 @@ class Chekin: AppCompatActivity(){
         if(!dniIsValid()){
             return false
         }
+        //validar la ñ
         if(!isValid(name, "([a-zA-Z',.-]+( [a-zA-Z',.-]+)*){2,30}", getString(R.string.nameInput))){
             return false
         }
@@ -166,7 +167,7 @@ class Chekin: AppCompatActivity(){
         val alertDialog: AlertDialog = builder.create()
         alertDialog.show()
     }
-
+    //validar el dni
     private fun dniIsValid():Boolean{
         return if(isValid(dni, "[0-9]{8}[A-Za-z]{1}", "dni")){
             val dniLeters = "TRWAGMYFPDXBNJZSQVHLCKE"

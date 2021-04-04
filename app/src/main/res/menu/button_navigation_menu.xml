@@ -3,22 +3,19 @@
 
     <item
         android:id="@+id/bottom_nav_favorites"
-        android:title="Favorites"
-        android:icon="@drawable/ic_favorite_on_surface_24dp"/>
+        android:title="Productos"
+        android:icon="@drawable/ic_baseline_shopping_bag_24"/>
 
     <item
         android:id="@+id/bottom_nav_music"
-        android:title="Music"
-        android:icon="@drawable/ic_music_note_on_surface_24dp"/>
+        android:title="Usuario"
+        android:icon="@drawable/ic_baseline_person_24"/>
 
-    <item
-        android:id="@+id/bottom_nav_places"
-        android:title="Places"
-        android:icon="@drawable/ic_place_on_surface_24dp"/>
+
 
     <item
         android:id="@+id/bottom_nav_news"
-        android:title="News"
-        android:icon="@drawable/ic_news_on_surface_24dp"/>
+        android:title="Carrito"
+        android:icon="@drawable/ic_baseline_shopping_cart_24"/>
 
 </menu>

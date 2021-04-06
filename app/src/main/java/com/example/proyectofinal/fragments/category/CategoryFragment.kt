@@ -9,10 +9,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectofinal.R
 import com.example.proyectofinal.dataBase.DataManager.DataManager.listCategory
-import com.example.proyectofinal.fragments.FragmentSwitch
 
 
-class CategoryFragment : Fragment(), FragmentSwitch {
+class CategoryFragment : Fragment() {
 
     private lateinit var recView: RecyclerView
 
@@ -25,7 +24,7 @@ class CategoryFragment : Fragment(), FragmentSwitch {
 
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
-        val adaptador = CategoryAdapter(listCategory())
+        val adaptador = CategoryAdapter(listCategory(), this)
         recView.apply {
             layoutManager = LinearLayoutManager(activity)
             setHasFixedSize(true)
@@ -37,7 +36,4 @@ class CategoryFragment : Fragment(), FragmentSwitch {
         fun newInstance() = CategoryFragment().apply {}
     }
 
-    override fun switchCategoryProduct() {
-        TODO("Not yet implemented")
-    }
 }

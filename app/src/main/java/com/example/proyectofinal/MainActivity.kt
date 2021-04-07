@@ -17,23 +17,11 @@ import java.util.*
 
 class MainActivity : AppCompatActivity(){
 
-    val fragment = CategoryFragment.newInstance()
-    val fragment2 = Fragment2.newInstance()
-
-
-    private lateinit var bottonmNav: BottomNavigationView
-    lateinit var navController: NavController
-    lateinit var drawerLayout: DrawerLayout
-    private lateinit var appBarConfiguration: AppBarConfiguration
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
-        StrictMode.setThreadPolicy(policy)
 
-        showFragment(fragment)
 
         Log.d(":::Product", listProduct().toString())
     }
@@ -58,11 +46,7 @@ class MainActivity : AppCompatActivity(){
 //
 //    }
 
-    fun showFragment(fragment: Fragment){
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.frameLayoutMain, fragment)
-        fragmentTransaction.commit()
-    }
+
 }
 
 

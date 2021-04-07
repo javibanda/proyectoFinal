@@ -1,8 +1,13 @@
 package com.example.proyectofinal.dataBase
 
+import android.widget.EditText
 import com.example.proyectofinal.data.*
 import com.example.proyectofinal.dataBase.SqlConection.SqlConection.getToken
+import com.example.proyectofinal.extensions.changeEditTextToStringToUpperCase
+import com.example.proyectofinal.extensions.toLowerCaseDefaultLocale
+import com.example.proyectofinal.extensions.toUpperCaseDefaultLocale
 import java.sql.Connection
+import kotlin.collections.ArrayList
 
 class DataManager {
 
@@ -56,15 +61,15 @@ class DataManager {
             return !resultSet.next()
         }
 
-        fun insertIntoPerson(dni:String, name:String, lastName:String, secondLastName:String?, email:String, pass:String, id_city:Int){
+        fun insertIntoPerson(dni:EditText, name:EditText, lastName:EditText, secondLastName:String?, email:EditText, pass:EditText, id_city:Int){
             with(conection){
                 var prepareSqlConection = prepareStatement("""INSERT INTO person (dni, name, lastName, secondLastName, email, pass, id_city) VALUES (?, ?, ?, ?, ?, ?, ?)""")
-                prepareSqlConection.setString(1, dni)
-                prepareSqlConection.setString(2, name)
-                prepareSqlConection.setString(3, lastName)
+                prepareSqlConection.setString(1, dni.toUpperCaseDefaultLocale())
+                prepareSqlConection.setString(2, name.toUpperCaseDefaultLocale())
+                prepareSqlConection.setString(3, lastName.toUpperCaseDefaultLocale())
                 prepareSqlConection.setString(4, secondLastName)
-                prepareSqlConection.setString(5, email)
-                prepareSqlConection.setString(6, pass)
+                prepareSqlConection.setString(5, email.toLowerCaseDefaultLocale())
+                prepareSqlConection.setString(6, pass.text.toString())
                 prepareSqlConection.setInt(7, id_city)
                 prepareSqlConection.execute()
             }

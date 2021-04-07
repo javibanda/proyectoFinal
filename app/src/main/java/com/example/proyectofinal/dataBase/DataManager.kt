@@ -3,7 +3,6 @@ package com.example.proyectofinal.dataBase
 import android.widget.EditText
 import com.example.proyectofinal.data.*
 import com.example.proyectofinal.dataBase.SqlConection.SqlConection.getToken
-import com.example.proyectofinal.extensions.changeEditTextToStringToUpperCase
 import com.example.proyectofinal.extensions.toLowerCaseDefaultLocale
 import com.example.proyectofinal.extensions.toUpperCaseDefaultLocale
 import java.sql.Connection

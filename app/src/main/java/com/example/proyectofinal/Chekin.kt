@@ -55,18 +55,12 @@ class Chekin: AppCompatActivity(){
                 }else if(!uniqueEmail(email.text.toString())){
                     setAlertDialog("YA EXISTE UNA CUENTA CON ESTE EMAIL")
                 }else{
-                    insertIntoPerson(dni.text.toString().toUpperCase(), name.text.toString().toUpperCase(), lastName.text.toString().toUpperCase() , secondLastNameIsNull(), email.text.toString().toLowerCase() ,pass.text.toString(), idCity)
+                    insertIntoPerson(dni, name, lastName , secondLastNameIsNull(), email ,pass, idCity)
                     Log.d(":::Datos", "se realiza el insertInto")
                     startActivity(Intent(this@Chekin, MainActivity::class.java))
                 }
             }
         }
-    }
-
-
-
-    override fun onResume() {
-        super.onResume()
     }
 
     private fun spinnerRegion(spinner: Spinner){
@@ -202,7 +196,6 @@ class Chekin: AppCompatActivity(){
             null
         }else{
              return secondLastName.text.toString().toUpperCase()
-
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.proyectofinal.dataBase
 
+import android.os.StrictMode
 import android.util.Log
 import java.sql.Connection
 import java.sql.DriverManager
@@ -13,6 +14,7 @@ class SqlConection {
         private lateinit var connection: Connection
         fun getToken():Connection{
             try {
+                StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder().permitAll().build())
                 Class.forName("com.mysql.jdbc.Driver").newInstance()
                 connection = DriverManager.getConnection(driverString, "root", "")
             }catch (ex: SQLException){

@@ -10,6 +10,16 @@ import kotlin.collections.ArrayList
 
 class DataManager {
 
+    companion object {
+        private const val BASE_PRODUCT_SELECT = "select pr.id, pr.name, pr.description, pr.price, pl.id, pl.name, pl.url, c.id, c.name, c.url, AVG(r.rating) media" +
+                " from product pr" +
+                " join platform pl on (pl.id = id_platform)" +
+                " join category c on (c.id = id_category)" +
+                " left join rating r on (pr.id = id_product )"
+
+        private const val FINAL_PRODUCT_SELECT = " group by pr.id"
+    }
+
     object DataManager{
         private val conection: Connection = getToken()
 

@@ -9,10 +9,16 @@ data class Product(
         val category: Category,
         val platform: Platform,
         val rating: Float,
-        //val listImg: List<String>
+        val listImg: List<ProductImg>
         ){
 
-        override fun toString(): String {
-                return "Product(id=$id, name='$name', description='$description', price=$price, category=$category, platform=$platform, rating=$rating)"
-        }
+        override fun toString() =
+                "Product(id=$id," +
+                " name='$name'," +
+                " description='$description'," +
+                " price=$price," +
+                " category=$category," +
+                " platform=$platform," +
+                " rating=$rating)," +
+                " imgProduct=$listImg"
 }

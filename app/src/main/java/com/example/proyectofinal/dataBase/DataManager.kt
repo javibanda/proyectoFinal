@@ -96,47 +96,102 @@ class DataManager {
             return listKindProduct
         }
 
-        fun listProduct():List<Product>{
+        fun getListProduct(idCategory: Int, idPlatform: Int): List<Product>{
+            val query: String
+            val array: IntArray
+            when {
+                idCategory == 0 -> {
+                    query = BASE_PRODUCT_SELECT + FINAL_PRODUCT_SELECT
+                    array = intArrayOf()
+                }
+                idPlatform == 0 -> {
+                    query = BASE_PRODUCT_SELECT +
+                            " where c.id = ?" +
+                            FINAL_PRODUCT_SELECT
+                    array = intArrayOf(idCategory)
+                }
+                else -> {
+                    query = BASE_PRODUCT_SELECT +
+                            " where c.id = ?" +
+                            " and pl.id = ?" +
+                            FINAL_PRODUCT_SELECT
+                    array = intArrayOf(idCategory, idPlatform)
+                }
+            }
+            return queryProduct(query, array)
+        }
+
+        private fun queryProduct(sql: String, array: IntArray):List<Product>{
             val listProduct = ArrayList<Product>()
+            with(getResultSetProduct(array, sql)){
+                while (next()) {
+                    val id = getInt("pr.id")
+                    val name = getString("pr.name")
+                    val description = getString("pr.description")
+                    val price = getFloat("pr.price")
+                    val idPlatform = getInt("pl.id")
+                    val namePlatform = getString("pl.name")
+                    val urlPlatform = getString("pl.url")
+                    val idCategory = getInt("c.id")
+                    val nameCategory = getString("c.name")
+                    val urlCategory = getString("c.url")
+                    val rating = getFloat("media")
 
-            val resultSet = conection.createStatement().executeQuery(
-                    "select pr.id, pr.name, pr.description, pr.price, pl.id, pl.name, c.id, c.name, c.url, AVG(r.rating) media" +
-                    " from product pr" +
-                    " join platform pl on (pl.id = id_platform)" +
-                    " join category c on (c.id = id_category)" +
-                    " join rating r on (pr.id = id_product )" +
-                    " group by pr.id"
-                   )
-            while (resultSet.next()){
-                val id = resultSet.getInt("pr.id")
-                val name = resultSet.getString("pr.name")
-                val description = resultSet.getString("pr.description")
-                val price = resultSet.getFloat("pr.price")
-                val idPlatform = resultSet.getInt("pl.id")
-                val namePlatform = resultSet.getString("pl.name")
-                val idCategory = resultSet.getInt("c.id")
-                val nameCategory = resultSet.getString("c.name")
-                val urlCategory = resultSet.getString("c.url")
-                val rating = resultSet.getFloat("media")
+                    val prepareSqlConnection =
+                        connection.prepareStatement("""SELECT * FROM img_product WHERE id_product = ?""")
+                    prepareSqlConnection.setInt(1, id)
+                    with(prepareSqlConnection.executeQuery()){
+                        val listImg = ArrayList<ProductImg>()
+                        while (next()) {
+                            val idImg = getInt("id")
+                            val urlImg = getString("url")
+                            listImg.add(ProductImg(idImg, urlImg))
+                        }
 
-                listProduct.add(Product(id, name, description, price, Category(idCategory, nameCategory, urlCategory), Platform(idPlatform, namePlatform), rating))
+                    val product = Product(
+                        id,
+                        name,
+                        description,
+                        price,
+                        Category(idCategory, nameCategory, urlCategory),
+                        Platform(idPlatform, namePlatform, urlPlatform),
+                        rating,
+                        listImg
+                    )
+
+
+                    //Log.d(":::Product " + product.id, product.toString())
+                    listProduct.add(product)
+                    }
+                }
             }
 
             return listProduct
         }
 
-        fun listProduct(idCategory: Int):List<Product>{
-            val listProduct = ArrayList<Product>()
-            if(idCategory == 1){
-                return listProduct()
-            }else{
-                for (i in listProduct()){
-                    if (i.category.id == idCategory){
-                        listProduct.add(i)
-                    }
-                }
+        private fun getResultSetProduct(array: IntArray, sql: String): ResultSet{
+            var cont = 0
+            val prepareSqlConnection = connection.prepareStatement(sql)
+            while ( cont < array.size){
+                prepareSqlConnection.setInt((cont + 1), array[cont])
+                cont++
             }
-           return listProduct
+            return  prepareSqlConnection.executeQuery()
+        }
+
+        fun listPlatform():List<Platform>{
+            val listPlatform = ArrayList<Platform>()
+
+            val resultSet = connection.createStatement().executeQuery(
+                    "SELECT id, name, url FROM platform"
+            )
+            while (resultSet.next()){
+                val id = resultSet.getInt("id")
+                val name = resultSet.getString("name")
+                val url = resultSet.getString("url")
+                listPlatform.add(Platform(id, name, url))
+            }
+            return listPlatform
         }
     }
 }

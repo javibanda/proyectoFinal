@@ -7,8 +7,7 @@
     tools:context=".MainActivity"
     >
 
-
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/frameLayoutMain"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
@@ -21,7 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/bottom_navigation_view" />
 
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation_view"
         android:layout_width="match_parent"
@@ -31,6 +29,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/button_navigation_menu"
         android:background="@color/lavanda" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

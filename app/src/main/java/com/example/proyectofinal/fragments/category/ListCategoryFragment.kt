@@ -8,15 +8,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectofinal.R
+import com.example.proyectofinal.adapter.category.CategoryRecyclerAdapter
 import com.example.proyectofinal.dataBase.DataManager.DataManager.listCategory
 
 
-class CategoryFragment : Fragment() {
+class ListCategoryFragment : Fragment() {
 
     private lateinit var recView: RecyclerView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View?
+    {
         val view = inflater.inflate(R.layout.fragment_category, container, false)
         recView = view.findViewById(R.id.miRecycler)
         return view
@@ -24,16 +26,12 @@ class CategoryFragment : Fragment() {
 
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
-        val adaptador = CategoryAdapter(listCategory(), this)
+        val categoryAdapter = CategoryRecyclerAdapter(listCategory(), this)
+
         recView.apply {
             layoutManager = LinearLayoutManager(activity)
             setHasFixedSize(true)
-            adapter = adaptador
+            adapter = categoryAdapter
         }
     }
-
-    companion object {
-        fun newInstance() = CategoryFragment().apply {}
-    }
-
 }

@@ -16,7 +16,7 @@ class SqlConection {
             try {
                 StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder().permitAll().build())
                 Class.forName("com.mysql.jdbc.Driver").newInstance()
-                connection = DriverManager.getConnection(driverString, "root", "")
+                connection = DriverManager.getConnection(driverString, "root", "kurwa")
             }catch (ex: SQLException){
                 Log.d(":::SQLExcepcion", ex.message.toString())
             }

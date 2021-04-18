@@ -1,6 +1,5 @@
 package com.example.proyectofinal;
 
-import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,13 +9,12 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import com.example.proyectofinal.data.City
-import com.example.proyectofinal.dataBase.DataManager
 import com.example.proyectofinal.dataBase.DataManager.DataManager.insertIntoPerson
 import com.example.proyectofinal.dataBase.DataManager.DataManager.listRegion
 import com.example.proyectofinal.dataBase.DataManager.DataManager.uniqueDni
 import com.example.proyectofinal.dataBase.DataManager.DataManager.uniqueEmail
 
-class Chekin: AppCompatActivity(){
+class CheckIn: AppCompatActivity(){
 
     private lateinit var spinerRegion: Spinner
     private lateinit var spinerCity: Spinner
@@ -57,7 +55,7 @@ class Chekin: AppCompatActivity(){
                 }else{
                     insertIntoPerson(dni, name, lastName , secondLastNameIsNull(), email ,pass, idCity)
                     Log.d(":::Datos", "se realiza el insertInto")
-                    startActivity(Intent(this@Chekin, MainActivity::class.java))
+                    startActivity(Intent(this@CheckIn, MainActivity::class.java))
                 }
             }
         }

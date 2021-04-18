@@ -10,13 +10,13 @@ class SqlConection {
 
     object SqlConection{
 
-        private val driverString = "jdbc:mysql://192.168.64.2:3306/finalProyect"
+        private val driverString = "jdbc:mysql://javibanda.atthost24.pl:3306/19458_finalo"
         private lateinit var connection: Connection
         fun getToken():Connection{
             try {
                 StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder().permitAll().build())
                 Class.forName("com.mysql.jdbc.Driver").newInstance()
-                connection = DriverManager.getConnection(driverString, "root", "kurwa")
+                connection = DriverManager.getConnection(driverString, "19458", "kBjTlzk9j7JQRQNs")
             }catch (ex: SQLException){
                 Log.d(":::SQLExcepcion", ex.message.toString())
             }

@@ -12,7 +12,7 @@ import kotlin.collections.ArrayList
 class DataManager {
 
     companion object {
-        private const val BASE_PRODUCT_SELECT = "select pr.id, pr.name, pr.description, pr.price, pl.id, pl.name, pl.url, c.id, c.name, c.url, AVG(r.rating) media" +
+        private const val BASE_PRODUCT_SELECT = "select pr.id, pr.name, pr.description, pr.price, pl.id, pl.name, pl.url, pl.color, pl.color_text, c.id, c.name, c.url, AVG(r.rating) media, COUNT(r.id) count" +
                 " from product pr" +
                 " join platform pl on (pl.id = id_platform)" +
                 " join category c on (c.id = id_category)" +
@@ -23,6 +23,7 @@ class DataManager {
 
     object DataManager{
         private val connection: Connection = getToken()
+        private val listProduct = queryProduct(BASE_PRODUCT_SELECT + FINAL_PRODUCT_SELECT, intArrayOf())
 
         fun listCity(): List<City> {
             val listCity = ArrayList<City>()
@@ -126,27 +127,36 @@ class DataManager {
 
         fun getListProduct(idCategory: Int, idPlatform: Int): List<Product>{
             val query: String
-            val array: IntArray
+            val arrayParameters
+                    : IntArray
             when {
                 idCategory == 0 -> {
-                    query = BASE_PRODUCT_SELECT + FINAL_PRODUCT_SELECT
-                    array = intArrayOf()
+                    return listProduct
                 }
                 idPlatform == 0 -> {
                     query = BASE_PRODUCT_SELECT +
                             " where c.id = ?" +
                             FINAL_PRODUCT_SELECT
-                    array = intArrayOf(idCategory)
+                    arrayParameters = intArrayOf(idCategory)
                 }
                 else -> {
                     query = BASE_PRODUCT_SELECT +
                             " where c.id = ?" +
                             " and pl.id = ?" +
                             FINAL_PRODUCT_SELECT
-                    array = intArrayOf(idCategory, idPlatform)
+                    arrayParameters = intArrayOf(idCategory, idPlatform)
                 }
             }
-            return queryProduct(query, array)
+            return queryProduct(query, arrayParameters)
+
+        }
+
+        fun getProduct(idProduct: Int): Product{
+            val query: String = BASE_PRODUCT_SELECT +
+                    " where pr.id = ?" +
+                    FINAL_PRODUCT_SELECT
+            val arrayParameters: IntArray = intArrayOf(idProduct)
+            return queryProduct(query, arrayParameters).first()
         }
 
         private fun queryProduct(sql: String, array: IntArray):List<Product>{
@@ -160,10 +170,13 @@ class DataManager {
                     val idPlatform = getInt("pl.id")
                     val namePlatform = getString("pl.name")
                     val urlPlatform = getString("pl.url")
+                    val colorPlatform = getString("pl.color")
+                    val colorTextPlatform = getString("pl.color_text")
                     val idCategory = getInt("c.id")
                     val nameCategory = getString("c.name")
                     val urlCategory = getString("c.url")
                     val rating = getFloat("media")
+                    val numRating = getInt("count")
 
                     val prepareSqlConnection =
                         connection.prepareStatement("""SELECT * FROM img_product WHERE id_product = ?""")
@@ -182,11 +195,11 @@ class DataManager {
                         description,
                         price,
                         Category(idCategory, nameCategory, urlCategory),
-                        Platform(idPlatform, namePlatform, urlPlatform),
+                        Platform(idPlatform, namePlatform, urlPlatform, colorPlatform, colorTextPlatform),
                         rating,
+                        numRating,
                         listImg
                     )
-
 
                     //Log.d(":::Product " + product.id, product.toString())
                     listProduct.add(product)
@@ -211,13 +224,15 @@ class DataManager {
             val listPlatform = ArrayList<Platform>()
 
             val resultSet = connection.createStatement().executeQuery(
-                    "SELECT id, name, url FROM platform"
+                    "SELECT id, name, url, color, color_text FROM platform"
             )
             while (resultSet.next()){
                 val id = resultSet.getInt("id")
                 val name = resultSet.getString("name")
                 val url = resultSet.getString("url")
-                listPlatform.add(Platform(id, name, url))
+                val color = resultSet.getString("color")
+                val colorText = resultSet.getString("color_text")
+                listPlatform.add(Platform(id, name, url, color, colorText))
             }
             return listPlatform
         }

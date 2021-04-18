@@ -9,6 +9,7 @@ data class Product(
         val category: Category,
         val platform: Platform,
         val rating: Float,
+        val numRating: Int,
         val listImg: List<ProductImg>
         ){
 
@@ -20,5 +21,6 @@ data class Product(
                 " category=$category," +
                 " platform=$platform," +
                 " rating=$rating)," +
+                " numRating=$numRating)," +
                 " imgProduct=$listImg"
 }

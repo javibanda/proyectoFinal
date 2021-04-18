@@ -16,7 +16,7 @@ import com.example.proyectofinal.fragments.listPlatform.ListPlatformFragmentArgs
 import com.example.proyectofinal.fragments.listPlatform.ListPlatformFragmentDirections
 import com.example.proyectofinal.util.NavOptions
 
-class PlatformViewHolder (itemView: View) : BaseViewHolder(itemView) {
+class ListPlatformViewHolder (itemView: View) : BaseViewHolder(itemView) {
 
     private val textView = itemView.findViewById<TextView>(R.id.nameMainList)
     private val imgView = itemView.findViewById<ImageView>(R.id.imgMainList)

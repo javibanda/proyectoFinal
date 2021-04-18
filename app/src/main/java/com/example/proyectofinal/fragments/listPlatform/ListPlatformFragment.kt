@@ -10,7 +10,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectofinal.R
-import com.example.proyectofinal.adapter.platform.PlatformRecyclerAdapter
+import com.example.proyectofinal.adapter.platform.ListPlatformRecyclerAdapter
 import com.example.proyectofinal.dataBase.DataManager.DataManager.listPlatform
 
 
@@ -30,7 +30,7 @@ class ListPlatformFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Log.d(":::Args", args.idCategory.toString())
 
-        val platformAdapter = PlatformRecyclerAdapter(listPlatform(), this, args.idCategory)
+        val platformAdapter = ListPlatformRecyclerAdapter(listPlatform(), this, args.idCategory)
         recView.apply {
             layoutManager = LinearLayoutManager(activity)
             setHasFixedSize(true)

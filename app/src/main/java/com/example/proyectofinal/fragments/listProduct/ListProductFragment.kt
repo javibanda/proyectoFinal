@@ -9,8 +9,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectofinal.R
-import com.example.proyectofinal.adapter.product.ProductRecyclerAdapter
-import com.example.proyectofinal.data.Product
+import com.example.proyectofinal.adapter.product.ListProductRecyclerAdapter
 import com.example.proyectofinal.dataBase.DataManager.DataManager.getListProduct
 
 
@@ -28,7 +27,7 @@ class ListProductFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val productAdapter = ProductRecyclerAdapter(getListProduct(args.idCategoryPlatform[0], args.idCategoryPlatform[1]), this)
+        val productAdapter = ListProductRecyclerAdapter(getListProduct(args.idCategoryPlatform[0], args.idCategoryPlatform[1]), this)
         recView.apply {
             layoutManager = LinearLayoutManager(activity)
             setHasFixedSize(true)

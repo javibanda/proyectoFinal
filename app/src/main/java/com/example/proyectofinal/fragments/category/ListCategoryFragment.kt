@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectofinal.R
-import com.example.proyectofinal.adapter.category.CategoryRecyclerAdapter
+import com.example.proyectofinal.adapter.category.ListCategoryRecyclerAdapter
 import com.example.proyectofinal.dataBase.DataManager.DataManager.listCategory
 
 
@@ -26,7 +26,7 @@ class ListCategoryFragment : Fragment() {
 
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
-        val categoryAdapter = CategoryRecyclerAdapter(listCategory(), this)
+        val categoryAdapter = ListCategoryRecyclerAdapter(listCategory(), this)
 
         recView.apply {
             layoutManager = LinearLayoutManager(activity)

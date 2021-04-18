@@ -19,7 +19,7 @@ import kotlin.properties.Delegates
 
 //import com.example.proyectofinal.fragments.category.ListCategoryFragmentDirections
 
-class CategoryViewHolder(itemView: View) : BaseViewHolder(itemView) {
+class ListCategoryViewHolder(itemView: View) : BaseViewHolder(itemView) {
 
 
     private val textView = itemView.findViewById<TextView>(R.id.nameMainList)

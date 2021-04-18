@@ -11,4 +11,17 @@
         <item name="android:textSize">@dimen/font_small</item>
         <item name="android:minHeight">20dp</item>
     </style>
+
+
+    <style name="MainLettersBold">
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">serif</item>
+        <item name="android:textColor">@color/grey_disabled</item>
+    </style>
+
+    <style name="MainLettersNormal">
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">serif</item>
+        <item name="android:textColor">@color/grey_disabled</item>
+    </style>
 </resources>

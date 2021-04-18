@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/bottom_nav_favorites"
+        android:id="@+id/categoryFragment"
         android:title="Productos"
         android:icon="@drawable/ic_baseline_shopping_bag_24"/>
 
     <item
-        android:id="@+id/bottom_nav_music"
+        android:id="@+id/fragment23"
         android:title="Usuario"
         android:icon="@drawable/ic_baseline_person_24"/>
 

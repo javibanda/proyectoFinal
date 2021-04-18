@@ -8,11 +8,10 @@
         android:id="@+id/categoryFragment"
         android:name="com.example.proyectofinal.fragments.category.ListCategoryFragment"
         android:label="fragment_category"
-        tools:layout="@layout/fragment_category" >
+        tools:layout="@layout/fragment_category">
         <action
             android:id="@+id/action_categoryFragment_to_listPlatformFragment"
-            app:destination="@id/listPlatformFragment">
-        </action>
+            app:destination="@id/listPlatformFragment"></action>
         <action
             android:id="@+id/action_categoryFragment_to_listProductFragment"
             app:destination="@id/listProductFragment" />
@@ -21,7 +20,7 @@
         android:id="@+id/listPlatformFragment"
         android:name="com.example.proyectofinal.fragments.listPlatform.ListPlatformFragment"
         android:label="fragment_list_platform"
-        tools:layout="@layout/fragment_list_platform" >
+        tools:layout="@layout/fragment_list_platform">
         <argument
             android:name="idCategory"
             app:argType="integer" />
@@ -45,5 +44,14 @@
         android:id="@+id/productFragment"
         android:name="com.example.proyectofinal.fragments.product.ProductFragment"
         android:label="fragment_product"
-        tools:layout="@layout/fragment_product" />
+        tools:layout="@layout/fragment_product">
+        <argument
+            android:name="idProduct"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment23"
+        android:name="com.example.proyectofinal.fragments.Fragment2"
+        android:label="fragment_2"
+        tools:layout="@layout/fragment_2" />
 </navigation>

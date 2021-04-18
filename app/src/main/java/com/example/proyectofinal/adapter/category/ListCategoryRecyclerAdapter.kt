@@ -6,14 +6,14 @@ import com.example.proyectofinal.R
 import com.example.proyectofinal.adapter.base.BaseRecyclerAdapter
 import com.example.proyectofinal.data.Category
 
-class CategoryRecyclerAdapter(
+class ListCategoryRecyclerAdapter(
         private val itemsList: List<Category>,
         private val fragment: Fragment
-) : BaseRecyclerAdapter<Category, CategoryViewHolder>(itemsList)  {
+) : BaseRecyclerAdapter<Category, ListCategoryViewHolder>(itemsList)  {
 
-    override fun createViewHolder(view: View, viewType: Int) = CategoryViewHolder(view)
+    override fun createViewHolder(view: View, viewType: Int) = ListCategoryViewHolder(view)
 
-    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ListCategoryViewHolder, position: Int) {
         holder.bindCategory(itemsList[position], fragment)
     }
 

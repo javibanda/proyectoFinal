@@ -7,15 +7,15 @@ import com.example.proyectofinal.adapter.base.BaseRecyclerAdapter
 
 import com.example.proyectofinal.data.Platform
 
-class PlatformRecyclerAdapter (
+class ListPlatformRecyclerAdapter (
     private val itemsList: List<Platform>,
     private val fragment: Fragment,
     private val idCategory: Int
-    ) : BaseRecyclerAdapter<Platform, PlatformViewHolder>(itemsList)  {
+    ) : BaseRecyclerAdapter<Platform, ListPlatformViewHolder>(itemsList)  {
 
-        override fun createViewHolder(view: View, viewType: Int) = PlatformViewHolder(view)
+        override fun createViewHolder(view: View, viewType: Int) = ListPlatformViewHolder(view)
 
-        override fun onBindViewHolder(holder: PlatformViewHolder, position: Int) {
+        override fun onBindViewHolder(holder: ListPlatformViewHolder, position: Int) {
             holder.bindPlatform(itemsList[position], fragment, idCategory)
         }
 

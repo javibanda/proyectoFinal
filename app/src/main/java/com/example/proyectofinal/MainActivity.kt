@@ -3,7 +3,14 @@ package com.example.proyectofinal
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.proyectofinal.dataBase.DataManager.DataManager.getListProduct
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity(){
@@ -12,21 +19,14 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setupBottomNavigation()
     }
 
-//    private fun navigationItemSelected(){
-//        bottonmNav = findViewById(R.id.bottom_navigation_view)
-//        bottonmNav.setOnNavigationItemReselectedListener { item ->
-//            when(item.itemId){
-//                R.id.bottom_nav_favorites ->{
-//                    //addNewFragment(fragment2)
-//                    startActivity(Intent(this@MainActivity, Chekin::class.java ))
-//                }
-//                R.id.bottom_nav_music ->{
-//                }
-//            }
-//        }
-//    }
+    private fun setupBottomNavigation(){
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
+        val navController = findNavController(R.id.frameLayoutMain)
+        bottomNavigationView.setupWithNavController(navController)
+    }
 }
 
 

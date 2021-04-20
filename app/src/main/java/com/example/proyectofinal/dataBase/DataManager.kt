@@ -5,12 +5,13 @@ import com.example.proyectofinal.data.*
 import com.example.proyectofinal.dataBase.SqlConection.SqlConection.getToken
 import com.example.proyectofinal.extensions.toLowerCaseDefaultLocale
 import com.example.proyectofinal.extensions.toUpperCaseDefaultLocale
+import com.google.android.material.textfield.TextInputLayout
 import java.sql.Connection
 import java.sql.ResultSet
 import kotlin.collections.ArrayList
+import kotlin.Boolean as Boolean1
 
 class DataManager {
-
     companion object {
         private const val BASE_PRODUCT_SELECT = "select pr.id, pr.name, pr.description, pr.price, pl.id, pl.name, pl.url, pl.color, pl.color_text, c.id, c.name, c.url, AVG(r.rating) media, COUNT(r.id) count" +
                 " from product pr" +
@@ -69,7 +70,7 @@ class DataManager {
             return listRegion
         }
 
-        fun uniqueDni(dni:String):Boolean{
+        fun uniqueDni(dni:String): Boolean1 {
             val prepareSqlConnection = connection.prepareStatement(
                     """SELECT * FROM person WHERE dni LIKE ?"""
             )
@@ -78,13 +79,35 @@ class DataManager {
             return !resultSet.next()
         }
 
-        fun uniqueEmail(email:String):Boolean{
+        fun uniqueEmail(email:String): Boolean1 {
             val prepareSqlConnection = connection.prepareStatement(
                     """SELECT * FROM person WHERE email LIKE ?"""
             )
             prepareSqlConnection.setString(1, email)
             val resultSet = prepareSqlConnection.executeQuery()
             return !resultSet.next()
+        }
+
+        fun checkMailAndPass(email: TextInputLayout, pass: TextInputLayout): ArrayList<Int> {
+            val list = ArrayList<Int>()
+            val prepareSqlConnection = connection.prepareStatement(
+                    """SELECT id
+                        |FROM person 
+                        |WHERE email LIKE ? 
+                        |AND pass LIKE ?
+                    """.trimMargin()
+            )
+            with(prepareSqlConnection){
+                setString(1,email.editText?.text.toString())
+                setString(2, pass.editText?.text.toString())
+            }
+            with(prepareSqlConnection.executeQuery()){
+                while (next()){
+                    val id = getInt("id")
+                    list.add(id)
+                }
+            }
+            return list
         }
 
         fun insertIntoPerson(dni:EditText,
@@ -177,7 +200,6 @@ class DataManager {
                     val urlCategory = getString("c.url")
                     val rating = getFloat("media")
                     val numRating = getInt("count")
-
                     val prepareSqlConnection =
                         connection.prepareStatement("""SELECT * FROM img_product WHERE id_product = ?""")
                     prepareSqlConnection.setInt(1, id)

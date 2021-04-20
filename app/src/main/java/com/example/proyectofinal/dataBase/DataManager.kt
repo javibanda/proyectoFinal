@@ -88,13 +88,14 @@ class DataManager {
             return !resultSet.next()
         }
 
-        fun checkMailAndPass(email: TextInputLayout, pass: TextInputLayout): ArrayList<Int> {
-            val list = ArrayList<Int>()
+        fun checkMailAndPass(email: TextInputLayout, pass: TextInputLayout): Person? {
+            var person: Person? = null
             val prepareSqlConnection = connection.prepareStatement(
-                    """SELECT id
-                        |FROM person 
-                        |WHERE email LIKE ? 
-                        |AND pass LIKE ?
+                    """SELECT p.id, p.dni, p.name, p.lastName, p.secondLastName, p.email, p.pass, c.id, c.name 
+                        |FROM person p  
+                        |JOIN city c ON (p.id_city = c.id) 
+                        |WHERE p.email LIKE ? 
+                        |AND p.pass LIKE ?
                     """.trimMargin()
             )
             with(prepareSqlConnection){
@@ -103,11 +104,19 @@ class DataManager {
             }
             with(prepareSqlConnection.executeQuery()){
                 while (next()){
-                    val id = getInt("id")
-                    list.add(id)
+                    val idP = getInt("p.id")
+                    val dniP = getString("p.dni")
+                    val nameP = getString("p.name")
+                    val lastNameP = getString("p.lastName")
+                    val secondLastNameP = getString("p.secondLastName")
+                    val emailP = getString("p.email")
+                    val passP = getString("p.pass")
+                    val idC = getInt("c.id")
+                    val nameC = getString("c.name")
+                    person = Person(idP, dniP, nameP, lastNameP, secondLastNameP, emailP, passP, City(idC, nameC))
                 }
             }
-            return list
+            return person
         }
 
         fun insertIntoPerson(dni:EditText,

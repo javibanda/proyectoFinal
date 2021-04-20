@@ -1,24 +1,22 @@
 package com.example.proyectofinal.data
 
-object User{
-        private var connexion = false
-        private var user = -1
+object User {
 
-        fun connect(user: Int){
-            connexion = true
-            this.user = user
-        }
+    private var user: Person? = null
 
-        fun disconnect(){
-            connexion = false
-            this.user = -1
-        }
+    fun connect(user: Person?) {
+        this.user = user
+    }
 
-        fun getIdUser(): Int{
-           return this.user
-        }
+    fun disconnect() {
+        this.user = null
+    }
 
-        fun getIsConnected(): Boolean{
-            return connexion
-        }
+    fun getIdUser(): Person? {
+        return this.user
+    }
+
+    fun getIsConnected(): Boolean {
+        return this.user != null
+    }
 }

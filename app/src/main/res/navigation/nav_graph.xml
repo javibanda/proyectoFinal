@@ -58,5 +58,18 @@
         android:id="@+id/logInFragment"
         android:name="com.example.proyectofinal.fragments.LogInFragment"
         android:label="fragment_log_in"
-        tools:layout="@layout/fragment_log_in" />
+        tools:layout="@layout/fragment_log_in" >
+        <action
+            android:id="@+id/action_logInFragment_to_listUserFragment"
+            app:destination="@id/listUserFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listUserFragment"
+        android:name="com.example.proyectofinal.fragments.ListUserFragment"
+        android:label="fragment_list_user"
+        tools:layout="@layout/fragment_list_user" >
+        <action
+            android:id="@+id/action_listUserFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+    </fragment>
 </navigation>

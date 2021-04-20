@@ -41,7 +41,6 @@ class LogInFragment : Fragment() {
 
         btnLogIn = view.findViewById(R.id.btnLogIn)
         return view
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

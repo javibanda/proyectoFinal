@@ -4,19 +4,19 @@ object User {
 
     private var user: Person? = null
 
-    fun connect(user: Person?) {
-        this.user = user
+    fun connectedUser(person: Person?) {
+        user = person
     }
 
-    fun disconnect() {
-        this.user = null
+    fun disconnectedUser() {
+        user = null
     }
 
     fun getIdUser(): Person? {
-        return this.user
+        return user
     }
 
     fun getIsConnected(): Boolean {
-        return this.user != null
+        return user != null
     }
 }

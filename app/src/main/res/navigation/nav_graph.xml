@@ -54,4 +54,9 @@
         android:name="com.example.proyectofinal.fragments.Fragment2"
         android:label="fragment_2"
         tools:layout="@layout/fragment_2" />
+    <fragment
+        android:id="@+id/logInFragment"
+        android:name="com.example.proyectofinal.fragments.LogInFragment"
+        android:label="fragment_log_in"
+        tools:layout="@layout/fragment_log_in" />
 </navigation>

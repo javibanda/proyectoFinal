@@ -14,7 +14,7 @@
 
 
     <item
-        android:id="@+id/bottom_nav_news"
+        android:id="@+id/logInFragment"
         android:title="Carrito"
         android:icon="@drawable/ic_baseline_shopping_cart_24"/>
 

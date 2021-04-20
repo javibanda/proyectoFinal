@@ -1,16 +1,14 @@
 package com.example.proyectofinal.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
+import androidx.navigation.fragment.NavHostFragment
 import com.example.proyectofinal.R
 import com.example.proyectofinal.data.User
-import com.example.proyectofinal.dataBase.DataManager
 import com.example.proyectofinal.dataBase.DataManager.DataManager.checkMailAndPass
 import com.google.android.material.textfield.TextInputLayout
 
@@ -21,6 +19,7 @@ class LogInFragment : Fragment() {
     private lateinit var etPass: TextInputLayout
 
     private lateinit var btnLogIn: Button
+    private var action = LogInFragmentDirections
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +27,9 @@ class LogInFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        if (User.getIsConnected()){
+            changeFragment()
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -52,8 +54,9 @@ class LogInFragment : Fragment() {
                 textInputsError()
                 etPass.error = "Email o contraseña incorrectas"
             }else{
-                User.connect(checkMailAndPass(etEmail, etPass))
+                User.connectedUser(checkMailAndPass(etEmail, etPass))
                 removeTextInputsError()
+                changeFragment()
             }
         }
     }
@@ -67,4 +70,12 @@ class LogInFragment : Fragment() {
         etEmail.error = ""
         etPass.error = ""
     }
+
+    private fun changeFragment(){
+        NavHostFragment.findNavController(this).navigate(
+            action.actionLogInFragmentToListUserFragment()
+        )
+    }
+
+
 }

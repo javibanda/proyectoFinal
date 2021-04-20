@@ -48,14 +48,12 @@ class LogInFragment : Fragment() {
 
     private fun pressLogIn(){
         btnLogIn.setOnClickListener {
-            Log.d(":::LogIn",checkMailAndPass(etEmail, etPass).isEmpty().toString() )
-            if (checkMailAndPass(etEmail, etPass).isEmpty()){
+            if (checkMailAndPass(etEmail, etPass) == null){
                 textInputsError()
                 etPass.error = "Email o contraseña incorrectas"
             }else{
-                User.connect(checkMailAndPass(etEmail, etPass)[0])
+                User.connect(checkMailAndPass(etEmail, etPass))
                 removeTextInputsError()
-                Log.d(":::LogIn",checkMailAndPass(etEmail, etPass)[0].toString() )
             }
         }
     }
@@ -68,9 +66,5 @@ class LogInFragment : Fragment() {
     private fun removeTextInputsError(){
         etEmail.error = ""
         etPass.error = ""
-    }
-
-    private fun connect(){
-
     }
 }

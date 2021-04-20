@@ -17,18 +17,13 @@ import com.example.proyectofinal.util.NavOptions
 import java.lang.reflect.Array
 import kotlin.properties.Delegates
 
-//import com.example.proyectofinal.fragments.category.ListCategoryFragmentDirections
-
 class ListCategoryViewHolder(itemView: View) : BaseViewHolder(itemView) {
-
 
     private val textView = itemView.findViewById<TextView>(R.id.nameMainList)
     private val imgView = itemView.findViewById<ImageView>(R.id.imgMainList)
     private val context = itemView.findViewById<ConstraintLayout>(R.id.mainList)
     private var id = 0
     private var action = ListCategoryFragmentDirections
-
-
 
     fun bindCategory(category: Category, fragment: Fragment) {
         textView.text = category.name
@@ -48,21 +43,25 @@ class ListCategoryViewHolder(itemView: View) : BaseViewHolder(itemView) {
     }
 
     private fun navigate(fragment: Fragment) {
-        if(id == 0) {
-            NavHostFragment.findNavController(fragment).navigate(
+        when (id) {
+            0 -> {
+                NavHostFragment.findNavController(fragment).navigate(
                     action.actionCategoryFragmentToListProductFragment(intArrayOf(0,0)),
                     NavOptions.getAnimation()
-            )
-        }else if(id == 3){
-            NavHostFragment.findNavController(fragment).navigate(
+                )
+            }
+            3 -> {
+                NavHostFragment.findNavController(fragment).navigate(
                     action.actionCategoryFragmentToListProductFragment(intArrayOf(id,0)),
                     NavOptions.getAnimation()
-            )
-        }else{
-            NavHostFragment.findNavController(fragment).navigate(
+                )
+            }
+            else -> {
+                NavHostFragment.findNavController(fragment).navigate(
                     action.actionCategoryFragmentToListPlatformFragment(id),
                     NavOptions.getAnimation()
-            )
+                )
+            }
         }
     }
 

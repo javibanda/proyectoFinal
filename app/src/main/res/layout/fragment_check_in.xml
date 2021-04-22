@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.CheckInFragment"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    android:paddingTop="30dp"
+    android:paddingBottom="30dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="30dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/txtTittle"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:text="REGISTRARSE"
+                android:gravity="center"
+                android:textSize="40dp"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="20dp"
+                android:id="@+id/tiDniCheckIn"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:hint="DNI"
+                app:layout_constraintTop_toBottomOf="@+id/txtTittle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tiNameCheckIn"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Nombre"
+                app:layout_constraintTop_toBottomOf="@+id/tiDniCheckIn">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tiLastNameCheckIn"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Primer apellido"
+                app:layout_constraintTop_toBottomOf="@+id/tiNameCheckIn">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tiSecondLastNameCheckIn"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Segundo apellido"
+                app:layout_constraintTop_toBottomOf="@+id/tiLastNameCheckIn">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tiEmailCheckIn"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Email"
+                app:layout_constraintTop_toBottomOf="@+id/tiSecondLastNameCheckIn">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tiPasswordCheckIn"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Introduce la contraseña"
+                app:layout_constraintTop_toBottomOf="@+id/tiEmailCheckIn">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tiVerifyPasswordCheckIn"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Valide la contraseña"
+                app:layout_constraintTop_toBottomOf="@+id/tiPasswordCheckIn">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Spinner
+                android:layout_marginTop="20dp"
+                android:id="@+id/spinerRegionCheckIn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/checkin_heigh"
+                android:background="@drawable/spinner_border"
+                app:layout_constraintTop_toBottomOf="@+id/tiVerifyPasswordCheckIn"
+                />
+
+            <Spinner
+                android:layout_marginTop="20dp"
+                android:id="@+id/spinerCityCheckIn"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/spinner_border"
+                app:layout_constraintTop_toBottomOf="@+id/spinerRegionCheckIn"
+                />
+
+
+            <Button
+                android:id="@+id/btnCheckIn"
+                android:layout_marginTop="70dp"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                app:layout_constraintTop_toBottomOf="@+id/spinerCityCheckIn"
+                android:text="registrarse"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

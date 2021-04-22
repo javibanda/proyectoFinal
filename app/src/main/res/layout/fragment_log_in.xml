@@ -59,12 +59,12 @@
         app:layout_constraintTop_toBottomOf="@+id/tiPasswordLogIn" />
 
     <Button
-        android:id="@+id/btnCheckIn"
+        android:id="@+id/btnCheckInLogInFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="registrarse"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogIn" />x
+        app:layout_constraintTop_toBottomOf="@+id/btnLogIn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

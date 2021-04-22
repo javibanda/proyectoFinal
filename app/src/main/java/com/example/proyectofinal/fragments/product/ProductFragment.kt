@@ -12,13 +12,12 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectofinal.R
 import com.example.proyectofinal.data.Product
-import com.example.proyectofinal.data.User
 import com.example.proyectofinal.data.User.getIsConnected
 import com.example.proyectofinal.data.User.getUser
 import com.example.proyectofinal.dataBase.DataManager.DataManager.getProduct
 import com.example.proyectofinal.dataBase.DataManager.DataManager.isRated
 import com.example.proyectofinal.extensions.loadUrl
-import com.example.proyectofinal.util.DialogLogIn.launchDialog
+
 
 class ProductFragment : Fragment() {
 

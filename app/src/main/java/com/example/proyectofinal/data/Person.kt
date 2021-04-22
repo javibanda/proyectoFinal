@@ -8,4 +8,7 @@ data class Person (val id:Int,
             val email:String,
             val pass:String,
             val city: City){
+    override fun toString(): String {
+        return "Person(id=$id, dni='$dni', name='$name', lastName='$lastName', secondLastName=$secondLastName, email='$email', pass='$pass', city=$city)"
+    }
 }

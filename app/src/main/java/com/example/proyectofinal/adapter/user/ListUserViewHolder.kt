@@ -30,7 +30,7 @@ class ListUserViewHolder(itemView: View) : BaseViewHolder(itemView) {
 
             if (txtOption.text.toString() == "Cerrar Sesion"){
                 NavHostFragment.findNavController(fragment).navigate(
-                    action.actionListUserFragmentToLogInFragment()
+                    action.actionListUserFragmentToLogInFragment(true)
                 )
                 User.disconnectedUser()
             }

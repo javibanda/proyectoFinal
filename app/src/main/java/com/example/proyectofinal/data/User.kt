@@ -12,9 +12,10 @@ object User {
         user = null
     }
 
-    fun getIdUser(): Person? {
+    fun getUser(): Person? {
         return user
     }
+
 
     fun getIsConnected(): Boolean {
         return user != null

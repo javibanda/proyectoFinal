@@ -91,6 +91,4 @@ class LogInFragment : Fragment() {
             logInFragmentToListUserFragment()
         }
     }
-
-
 }

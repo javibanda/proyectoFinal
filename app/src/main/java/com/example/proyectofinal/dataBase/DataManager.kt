@@ -328,5 +328,51 @@ class DataManager {
                 }
             }
         }
+
+        fun setRate(rating: Int, product: Product, person: Person){
+            Log.d(":::RatingIntroducido", rating.toString())
+            var rat:Float = 0.0F
+            
+            with(connection) {
+                val prepareSqlConnection = prepareStatement(
+                        """INSERT INTO rating (rating, id_product, id_person)
+                            |VALUES (?, ?, ?)
+                       """.trimMargin()
+                )
+                with(prepareSqlConnection) {
+                    setInt(1, rating)
+                    setInt(2, product.id)
+                    setInt(3, person.id)
+                    execute()
+                }
+            }
+        }
+
+        fun getRate(product: Product): Float{
+            var rating: Float = 0.0F
+            with(connection) {
+                val prepareSqlConnection = prepareStatement(
+                        """SELECT p.name, AVG(r.rating) as rat
+                            |FROM product p
+                            |LEFT JOIN rating r ON (p.id = r.id_product)
+                            |WHERE p.id = ?
+                            |GROUP BY p.id
+                        """.trimMargin()
+                )
+                with(prepareSqlConnection){
+                    setInt(1, product.id)
+                    with(executeQuery()){
+                        while (next()){
+                            rating = getFloat("rat")
+                        }
+                    }
+                }
+            }
+            return rating
+        }
+
+
+
+
     }
 }

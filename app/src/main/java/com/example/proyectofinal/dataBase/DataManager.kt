@@ -1,14 +1,13 @@
 package com.example.proyectofinal.dataBase
 
+import android.util.Log
 import android.widget.EditText
 import com.example.proyectofinal.data.*
 import com.example.proyectofinal.dataBase.SqlConection.SqlConection.getToken
 import com.example.proyectofinal.extensions.toLowerCaseDefaultLocale
 import com.example.proyectofinal.extensions.toUpperCaseDefaultLocale
-import com.google.android.material.textfield.TextInputLayout
 import java.sql.Connection
 import java.sql.ResultSet
-import java.time.temporal.TemporalAdjusters.next
 import kotlin.collections.ArrayList
 import kotlin.Boolean as Boolean1
 
@@ -302,20 +301,27 @@ class DataManager {
 
 
         fun isRated(product: Product, person: Person?): kotlin.Boolean {
+            var cadena = ""
+            if (person == null){
+                cadena = "No hay usuario registrado"
+            }else{
+                cadena = person.id.toString() + ": " + person.name
+            }
+            Log.d(":::Favoritos", cadena +"\n"+ product.id.toString() + ": " + product.name )
             if (person == null) {
                 return false
             }
             with(connection) {
-                val prepareSqlConection = prepareStatement(
+                val prepareSqlConnection = prepareStatement(
                         """SELECT * 
                            |FROM rating
                            |WHERE id_product = ?
                            |AND id_person = ?
                        """.trimMargin()
                 )
-                with(prepareSqlConection) {
+                with(prepareSqlConnection) {
                     setInt(1, product.id)
-                    setInt(2, product.id)
+                    setInt(2, person.id)
                     with(executeQuery()) {
                         return next()
                     }

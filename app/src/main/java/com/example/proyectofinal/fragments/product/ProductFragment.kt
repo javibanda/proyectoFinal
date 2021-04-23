@@ -15,13 +15,15 @@ import com.example.proyectofinal.data.Product
 import com.example.proyectofinal.data.User.getIsConnected
 import com.example.proyectofinal.data.User.getUser
 import com.example.proyectofinal.dataBase.DataManager.DataManager.getProduct
+import com.example.proyectofinal.dataBase.DataManager.DataManager.getRate
 import com.example.proyectofinal.dataBase.DataManager.DataManager.isRated
+import com.example.proyectofinal.dataBase.DataManager.DataManager.setRate
 import com.example.proyectofinal.extensions.loadUrl
 
 
 class ProductFragment : Fragment() {
 
-    val args: ProductFragmentArgs by navArgs()
+    private val args: ProductFragmentArgs by navArgs()
     private lateinit var txtName: TextView
     private lateinit var txtPlatform: TextView
     private lateinit var txtPrice1: TextView
@@ -67,16 +69,57 @@ class ProductFragment : Fragment() {
         setColorPlatform()
         listenerBtnBuy()
         btnRatingClick()
+        setRatingBar()
+        listenerRatingBar()
     }
-
 
     private fun btnRatingClick(){
         btnRating.setOnClickListener {
             if (!getIsConnected()){
                 setToast("Usuario desconectado")
-            }else if (!isRated(product!!, getUser())){
+                disableRatingBar()
+            }else if (isRated(product!!, getUser())){
                 setToast("Ya has valorado este producto")
+                disableRatingBar()
+            }else{
+                setToast("Producto valorado")
+                setRate((ratingBar.rating * 2).toInt(), product!!, getUser()!!)
+
+                disableRatingBar()
+                ratingBar.rating = getRate(product!!)/2
             }
+        }
+    }
+
+    private fun disableRatingBar(){
+        ratingBar.isEnabled = false
+        ratingBar.rating = product!!.rating/2
+        btnRating.visibility = View.INVISIBLE
+    }
+
+    private fun enableRatingBar(){
+        ratingBar.isEnabled = true
+        btnRating.visibility = View.VISIBLE
+    }
+
+    private fun setRatingBar(){
+        if (!getIsConnected()){
+            disableRatingBar()
+        }else if (isRated(product!!, getUser())){
+            disableRatingBar()
+        }else {
+            enableRatingBar()
+        }
+    }
+
+    private fun listenerRatingBar(){
+        ratingBar.setOnClickListener{
+            if (!getIsConnected()){
+                setToast("No esta conectado")
+            }else if (isRated(product!!, getUser())){
+                setToast("Ya ha valorado este producto")
+            }
+
         }
     }
 
@@ -93,6 +136,7 @@ class ProductFragment : Fragment() {
             if (getIsConnected()){
 
             }else{
+                super.onDestroy()
                 NavHostFragment.findNavController(this).navigate(
                         action.actionProductFragmentToLogInFragment(true)
                 )

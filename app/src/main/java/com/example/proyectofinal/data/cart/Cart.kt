@@ -38,8 +38,10 @@ object Cart {
     }
 
 
-    fun remove(idProduct: Int){
-        listCart.removeAt(idProduct)
+    fun remove(position: Int){
+        val price = listCart[position].getTotalPrice()
+        totalPrice -= price
+        listCart.removeAt(position)
     }
 
     fun clear(){

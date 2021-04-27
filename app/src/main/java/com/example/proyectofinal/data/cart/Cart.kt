@@ -25,6 +25,8 @@ object Cart {
         return listCart
     }
 
+    fun getTotalPrice() = totalPrice
+
     private fun contains(product: Product): Int{
         var contains = -1
         for((cont, i) in listCart.withIndex()){

@@ -1,4 +1,4 @@
-package com.example.proyectofinal.fragments.product
+package com.example.proyectofinal.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -17,12 +17,13 @@ import com.example.proyectofinal.data.User.getIsConnected
 import com.example.proyectofinal.data.User.getUser
 import com.example.proyectofinal.data.cart.Cart
 import com.example.proyectofinal.data.cart.Cart.getListCart
-import com.example.proyectofinal.dataBase.DataManager.DataManager.getListProduct
 import com.example.proyectofinal.dataBase.DataManager.DataManager.getProduct
 import com.example.proyectofinal.dataBase.DataManager.DataManager.getRate
 import com.example.proyectofinal.dataBase.DataManager.DataManager.isRated
 import com.example.proyectofinal.dataBase.DataManager.DataManager.setRate
 import com.example.proyectofinal.extensions.loadUrl
+import com.example.proyectofinal.fragments.product.ProductFragmentArgs
+import com.example.proyectofinal.fragments.product.ProductFragmentDirections
 
 
 class ProductFragment : Fragment() {
@@ -145,7 +146,7 @@ class ProductFragment : Fragment() {
             }else{
                 super.onDestroy()
                 NavHostFragment.findNavController(this).navigate(
-                        action.actionProductFragmentToLogInFragment(true)
+                        ProductFragmentDirections.actionProductFragmentToLogInFragment(true)
                 )
             }
         }

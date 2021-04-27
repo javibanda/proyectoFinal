@@ -1,4 +1,4 @@
-package com.example.proyectofinal.fragments.listProduct
+package com.example.proyectofinal.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,6 +13,7 @@ import com.example.proyectofinal.R
 import com.example.proyectofinal.adapter.product.ListProductRecyclerAdapter
 import com.example.proyectofinal.data.Product
 import com.example.proyectofinal.dataBase.DataManager.DataManager.getListProduct
+import com.example.proyectofinal.fragments.listProduct.ListProductFragmentArgs
 import kotlin.collections.ArrayList
 
 

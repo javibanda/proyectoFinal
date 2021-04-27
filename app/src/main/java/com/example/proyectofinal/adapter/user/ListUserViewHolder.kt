@@ -1,4 +1,4 @@
-package com.example.proyectofinal.adapter.user
+
 
 import android.view.View
 import android.widget.TextView
@@ -24,8 +24,7 @@ class ListUserViewHolder(itemView: View) : BaseViewHolder(itemView) {
         directionLogOut(fragment)
     }
 
-
-    fun directionLogOut(fragment: Fragment){
+    private fun directionLogOut(fragment: Fragment){
         userView.setOnClickListener {
 
             if (txtOption.text.toString() == "Cerrar Sesion"){

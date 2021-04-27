@@ -1,11 +1,10 @@
 package com.example.proyectofinal.adapter.user
 
+import ListUserViewHolder
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.proyectofinal.R
 import com.example.proyectofinal.adapter.base.BaseRecyclerAdapter
-import com.example.proyectofinal.adapter.product.ListProductViewHolder
-import com.example.proyectofinal.data.Product
 
 class ListUserRecyclerAdapter (
     private val itemsList: List<String>,

@@ -301,13 +301,13 @@ class DataManager {
 
 
         fun isRated(product: Product, person: Person?): kotlin.Boolean {
-            var cadena = ""
-            if (person == null){
-                cadena = "No hay usuario registrado"
-            }else{
-                cadena = person.id.toString() + ": " + person.name
-            }
-            Log.d(":::Favoritos", cadena +"\n"+ product.id.toString() + ": " + product.name )
+//            var cadena = ""
+//            if (person == null){
+//                cadena = "No hay usuario registrado"
+//            }else{
+//                cadena = person.id.toString() + ": " + person.name
+//            }
+//            Log.d(":::Favoritos", cadena +"\n"+ product.id.toString() + ": " + product.name )
             if (person == null) {
                 return false
             }

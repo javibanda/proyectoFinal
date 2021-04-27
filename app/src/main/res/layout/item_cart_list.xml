@@ -3,22 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_marginBottom="10dp">
 
 
     <TextView
 
-        android:paddingLeft="15dp"
-        android:layout_marginBottom="5dp"
         android:id="@+id/txtNameCart"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
+        android:paddingLeft="15dp"
         android:text="The legend of Zelda: Link Awakened"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -75,30 +76,23 @@
         android:id="@+id/txtPriceCart"
         android:layout_width="0dp"
         android:layout_height="@dimen/cartHeight"
+        android:gravity="center"
         android:text="1140.56€"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:gravity="center"
 
-        app:layout_constraintEnd_toStartOf="@+id/guideline9"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintTop_toBottomOf="@+id/txtNameCart" />
 
-    <TextView
-        android:id="@+id/btnRemoveCart"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/cartHeight"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toBottomOf="@+id/txtNameCart"/>
+
 
     <TextView
         android:layout_marginTop="2dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/black"
-        app:layout_constraintTop_toBottomOf="@+id/btnRemoveCart"/>
+        app:layout_constraintTop_toBottomOf="@+id/txtPriceCart"/>
 
 
 
@@ -133,11 +127,6 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.4" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.89" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.proyectofinal.fragments.product
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,6 +15,9 @@ import com.example.proyectofinal.R
 import com.example.proyectofinal.data.Product
 import com.example.proyectofinal.data.User.getIsConnected
 import com.example.proyectofinal.data.User.getUser
+import com.example.proyectofinal.data.cart.Cart
+import com.example.proyectofinal.data.cart.Cart.getListCart
+import com.example.proyectofinal.dataBase.DataManager.DataManager.getListProduct
 import com.example.proyectofinal.dataBase.DataManager.DataManager.getProduct
 import com.example.proyectofinal.dataBase.DataManager.DataManager.getRate
 import com.example.proyectofinal.dataBase.DataManager.DataManager.isRated
@@ -134,7 +138,10 @@ class ProductFragment : Fragment() {
     private fun listenerBtnBuy() {
         btnBuy.setOnClickListener {
             if (getIsConnected()){
-
+                Cart.add(product!!, 1)
+                for (i in getListCart()){
+                    //Log.d(":::ListCart", i.product.name + ": " + i.count)
+                }
             }else{
                 super.onDestroy()
                 NavHostFragment.findNavController(this).navigate(
@@ -147,6 +154,7 @@ class ProductFragment : Fragment() {
     private fun setColorPlatform(){
         txtPlatform.setTextColor(product!!.platform.color.toColorInt())
     }
+    @SuppressLint("SetTextI18n")
     private fun setPrice() {
         val price = (product!!.price - 0.05).toString()
         val arrayPrice = price.split('.')

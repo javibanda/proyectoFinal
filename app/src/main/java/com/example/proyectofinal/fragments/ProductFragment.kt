@@ -22,8 +22,7 @@ import com.example.proyectofinal.dataBase.DataManager.DataManager.getRate
 import com.example.proyectofinal.dataBase.DataManager.DataManager.isRated
 import com.example.proyectofinal.dataBase.DataManager.DataManager.setRate
 import com.example.proyectofinal.extensions.loadUrl
-import com.example.proyectofinal.fragments.ProductFragmentArgs
-import com.example.proyectofinal.fragments.ProductFragmentDirections
+import com.example.proyectofinal.util.SetToast
 
 
 class ProductFragment : Fragment() {
@@ -81,13 +80,13 @@ class ProductFragment : Fragment() {
     private fun btnRatingClick(){
         btnRating.setOnClickListener {
             if (!getIsConnected()){
-                setToast("Usuario desconectado")
+                SetToast.set("Usuario desconectado", context)
                 disableRatingBar()
             }else if (isRated(product!!, getUser())){
-                setToast("Ya has valorado este producto")
+                SetToast.set("Ya has valorado este producto", context)
                 disableRatingBar()
             }else{
-                setToast("Producto valorado")
+                SetToast.set("Producto valorado", context)
                 setRate((ratingBar.rating * 2).toInt(), product!!, getUser()!!)
 
                 disableRatingBar()
@@ -120,21 +119,15 @@ class ProductFragment : Fragment() {
     private fun listenerRatingBar(){
         ratingBar.setOnClickListener{
             if (!getIsConnected()){
-                setToast("No esta conectado")
+                SetToast.set("No esta conectado", context)
             }else if (isRated(product!!, getUser())){
-                setToast("Ya ha valorado este producto")
+                SetToast.set("Ya ha valorado este producto", context)
             }
 
         }
     }
 
-    private fun setToast(string: String){
-        Toast.makeText(
-                context,
-                string,
-                Toast.LENGTH_LONG
-        ).show()
-    }
+
 
     private fun listenerBtnBuy() {
         btnBuy.setOnClickListener {

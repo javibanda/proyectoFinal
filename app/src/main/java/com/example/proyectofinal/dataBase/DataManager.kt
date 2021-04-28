@@ -3,9 +3,11 @@ package com.example.proyectofinal.dataBase
 import android.util.Log
 import android.widget.EditText
 import com.example.proyectofinal.data.*
+import com.example.proyectofinal.data.cart.LocalCart
 import com.example.proyectofinal.dataBase.SqlConection.SqlConection.getToken
 import com.example.proyectofinal.extensions.toLowerCaseDefaultLocale
 import com.example.proyectofinal.extensions.toUpperCaseDefaultLocale
+import com.example.proyectofinal.util.Date
 import java.sql.Connection
 import java.sql.ResultSet
 import kotlin.collections.ArrayList
@@ -368,11 +370,59 @@ class DataManager {
                     }
                 }
             }
+
             return rating
         }
 
 
+        fun insertIntoOrder(){
+            with(connection){
+                val prepareSqlConnection = prepareStatement(
+                        """INSERT INTO orders (daate, price_products, price_delivery, total_price, id_person, id_city, street)
+                            |VALUES (?,?,?,?,?,?, ?)
+                        """.trimMargin()
+                )
+                with(prepareSqlConnection){
+                    setString(1, Date.getDate())
+                    setFloat(2,LocalCart.getPrice())
+                    setFloat(3,LocalCart.getDeliveyPrice())
+                    setFloat(4, LocalCart.getTotalPrice())
+                    setInt(5, User.getUser()?.city!!.id)
+                    setInt(6, User.getUser()?.id!!)
+                    setString(7, "Avenida Santa Cruz de tenerife")
+                    execute()
+                }
+            }
 
+            insertIntoProducts()
+        }
 
+        private fun insertIntoProducts(){
+            for (product in LocalCart.getProducts()){
+                with(connection){
+                    val prepareSqlConection = prepareStatement(
+                            """INSERT INTO product_order(id_order, id_product)
+                                |VALUES (?, ?)
+                            """.trimMargin()
+                    )
+                    with(prepareSqlConection){
+                        setInt(1, getLastOrder())
+                        setInt(2, product.id)
+                        execute()
+                    }
+                }
+            }
+        }
+
+        private fun getLastOrder(): Int{
+            var id: Int = 0
+            val resultSet = connection.createStatement().executeQuery("SELECT id FROM orders ORDER BY id DESC LIMIT 1")
+            with(resultSet){
+                while (next()){
+                    id = getInt("id")
+                }
+            }
+            return id
+        }
     }
 }

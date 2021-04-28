@@ -90,7 +90,7 @@ class CartFragment : Fragment(), OnItemClickListener {
 
     private fun clickBuy(){
         btnBuyCart.setOnClickListener {
-            if (Cart.isEmpty()){
+            if (LocalCart.isEmpty()){
                 SetToast.set("No hay ningun producto en el carrito", context)
             }
         }

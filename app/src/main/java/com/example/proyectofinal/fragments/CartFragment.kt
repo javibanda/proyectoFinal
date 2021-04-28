@@ -18,6 +18,7 @@ import com.example.proyectofinal.adapter.base.OnItemClickListener
 import com.example.proyectofinal.data.User.getIsConnected
 import com.example.proyectofinal.data.cart.Cart
 import com.example.proyectofinal.data.cart.Cart.getTotalPrice
+import com.example.proyectofinal.util.SetToast
 
 
 class CartFragment : Fragment(), OnItemClickListener {
@@ -53,6 +54,7 @@ class CartFragment : Fragment(), OnItemClickListener {
         updateTotalPrice()
         checkIsUserConnected()
         clickLogIn()
+        clickBuy()
     }
 
     private fun checkIsUserConnected(){
@@ -82,6 +84,14 @@ class CartFragment : Fragment(), OnItemClickListener {
             NavHostFragment.findNavController(this).navigate(
                     action.actionCartFragmentToLogInFragment(true)
             )
+        }
+    }
+
+    private fun clickBuy(){
+        btnBuyCart.setOnClickListener {
+            if (Cart.isEmpty()){
+                SetToast.set("No hay ningun producto en el carrito", context)
+            }
         }
     }
 

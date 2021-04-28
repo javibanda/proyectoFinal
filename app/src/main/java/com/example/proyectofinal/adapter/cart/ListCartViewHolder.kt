@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import com.example.proyectofinal.R
 import com.example.proyectofinal.adapter.base.BaseViewHolder
 import com.example.proyectofinal.adapter.base.OnItemClickListener
-import com.example.proyectofinal.data.cart.Cart
+import com.example.proyectofinal.data.cart.LocalCart
 import com.example.proyectofinal.data.cart.DataCart
 
 class ListCartViewHolder(itemView: View) : BaseViewHolder(itemView){
@@ -47,7 +47,7 @@ class ListCartViewHolder(itemView: View) : BaseViewHolder(itemView){
     }
 
     private fun addOrRemoveOne(cart: DataCart, add: Int) {
-        Cart.add(cart.getProduct(), add)
+        LocalCart.add(cart.getProduct(), add)
         listener.onItemClick()
         txtPriceProduct.text = String.format("%.2f", cart.getTotalPrice())
         txtCount.text = cart.getQuantity().toString()

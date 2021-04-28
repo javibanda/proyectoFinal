@@ -8,7 +8,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.example.proyectofinal.R
 import com.example.proyectofinal.adapter.base.BaseViewHolder
 import com.example.proyectofinal.data.User
-import com.example.proyectofinal.data.cart.Cart
+import com.example.proyectofinal.data.cart.LocalCart
 import com.example.proyectofinal.fragments.ListUserFragmentDirections
 
 class ListUserViewHolder(itemView: View) : BaseViewHolder(itemView) {
@@ -29,7 +29,7 @@ class ListUserViewHolder(itemView: View) : BaseViewHolder(itemView) {
         userView.setOnClickListener {
 
             if (txtOption.text.toString() == "Cerrar Sesion"){
-                Cart.clear()
+                LocalCart.clear()
                 NavHostFragment.findNavController(fragment).navigate(
                     action.actionListUserFragmentToLogInFragment(true)
                 )

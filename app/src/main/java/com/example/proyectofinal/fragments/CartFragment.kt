@@ -108,7 +108,7 @@ class CartFragment : Fragment(), OnItemClickListener {
 
     @SuppressLint("SetTextI18n")
     private fun updateTotalPrice(){
-        val totalPrice = String.format("%.2f",getTotalPrice())
+        val totalPrice = String.format("%.2f",getPrice())
         txtTotalCart.text = "TOTAL:       $totalPrice€"
     }
 }

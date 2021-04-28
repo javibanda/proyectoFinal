@@ -16,8 +16,9 @@ import com.example.proyectofinal.R
 import com.example.proyectofinal.adapter.cart.ListCartRecyclerAdapter
 import com.example.proyectofinal.adapter.base.OnItemClickListener
 import com.example.proyectofinal.data.User.getIsConnected
-import com.example.proyectofinal.data.cart.Cart
-import com.example.proyectofinal.data.cart.Cart.getTotalPrice
+import com.example.proyectofinal.data.cart.LocalCart
+import com.example.proyectofinal.data.cart.LocalCart.getPrice
+import com.example.proyectofinal.dataBase.DataManager
 import com.example.proyectofinal.util.SetToast
 
 
@@ -44,7 +45,7 @@ class CartFragment : Fragment(), OnItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val cartAdapter = ListCartRecyclerAdapter(Cart.getListCart(), this, this)
+        val cartAdapter = ListCartRecyclerAdapter(LocalCart.getListDataCart(), this, this)
 
         recyclerViewCart.apply {
             layoutManager = LinearLayoutManager(activity)

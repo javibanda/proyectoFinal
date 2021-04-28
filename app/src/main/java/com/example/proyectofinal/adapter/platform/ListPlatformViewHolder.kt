@@ -12,8 +12,8 @@ import com.example.proyectofinal.R
 import com.example.proyectofinal.adapter.base.BaseViewHolder
 import com.example.proyectofinal.data.Platform
 import com.example.proyectofinal.extensions.loadUrl
-import com.example.proyectofinal.fragments.listPlatform.ListPlatformFragmentArgs
-import com.example.proyectofinal.fragments.listPlatform.ListPlatformFragmentDirections
+import com.example.proyectofinal.fragments.ListPlatformFragmentArgs
+import com.example.proyectofinal.fragments.ListPlatformFragmentDirections
 import com.example.proyectofinal.util.NavOptions
 
 class ListPlatformViewHolder (itemView: View) : BaseViewHolder(itemView) {

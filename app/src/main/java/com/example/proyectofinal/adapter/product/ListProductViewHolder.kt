@@ -10,7 +10,7 @@ import com.example.proyectofinal.R
 import com.example.proyectofinal.adapter.base.BaseViewHolder
 import com.example.proyectofinal.data.Product
 import com.example.proyectofinal.extensions.loadUrl
-import com.example.proyectofinal.fragments.listProduct.ListProductFragmentDirections
+import com.example.proyectofinal.fragments.ListProductFragmentDirections
 import com.example.proyectofinal.util.NavOptions
 
 class ListProductViewHolder(itemView: View) : BaseViewHolder(itemView){

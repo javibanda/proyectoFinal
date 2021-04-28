@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectofinal.R
 import com.example.proyectofinal.adapter.platform.ListPlatformRecyclerAdapter
 import com.example.proyectofinal.dataBase.DataManager.DataManager.listPlatform
-import com.example.proyectofinal.fragments.listPlatform.ListPlatformFragmentArgs
+import com.example.proyectofinal.fragments.ListPlatformFragmentArgs
 
 
 class ListPlatformFragment : Fragment() {

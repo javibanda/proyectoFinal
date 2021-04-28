@@ -22,8 +22,8 @@ import com.example.proyectofinal.dataBase.DataManager.DataManager.getRate
 import com.example.proyectofinal.dataBase.DataManager.DataManager.isRated
 import com.example.proyectofinal.dataBase.DataManager.DataManager.setRate
 import com.example.proyectofinal.extensions.loadUrl
-import com.example.proyectofinal.fragments.product.ProductFragmentArgs
-import com.example.proyectofinal.fragments.product.ProductFragmentDirections
+import com.example.proyectofinal.fragments.ProductFragmentArgs
+import com.example.proyectofinal.fragments.ProductFragmentDirections
 
 
 class ProductFragment : Fragment() {
@@ -157,7 +157,7 @@ class ProductFragment : Fragment() {
     }
     @SuppressLint("SetTextI18n")
     private fun setPrice() {
-        val price = (product!!.price - 0.05).toString()
+        val price = String.format("%.2f",product!!.price)
         val arrayPrice = price.split('.')
         txtPrice1.text = arrayPrice[0] + ","
         txtPrice2.text = arrayPrice[1] + "€"

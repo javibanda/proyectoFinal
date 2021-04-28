@@ -4,18 +4,15 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavDirections
 import androidx.navigation.fragment.NavHostFragment
 import com.example.proyectofinal.R
 import com.example.proyectofinal.adapter.base.BaseViewHolder
 import com.example.proyectofinal.data.Category
 import com.example.proyectofinal.extensions.loadUrl
-import com.example.proyectofinal.fragments.category.ListCategoryFragmentDirections
+import com.example.proyectofinal.fragments.ListCategoryFragmentDirections
 import com.example.proyectofinal.util.NavOptions
-import java.lang.reflect.Array
-import kotlin.properties.Delegates
+
 
 class ListCategoryViewHolder(itemView: View) : BaseViewHolder(itemView) {
 

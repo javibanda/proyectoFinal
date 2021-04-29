@@ -3,7 +3,7 @@ package com.example.proyectofinal.data.cart
 import android.util.Log
 import com.example.proyectofinal.data.Product
 
-open class Carts (){
+open class Cart (){
 
     private val listDataCart = ArrayList<DataCart>()
     private var price: Float = 0f
@@ -29,7 +29,7 @@ open class Carts (){
         //test()
     }
 
-    fun getDeliveyPrice(): Float{
+    fun getDeliveryPrice(): Float{
         return if (price == 0f|| price > 30){
             0f
         }else{
@@ -37,7 +37,7 @@ open class Carts (){
         }
     }
 
-    fun getTotalPrice() = price + getDeliveyPrice()
+    fun getTotalPrice() = price + getDeliveryPrice()
 
     fun getProducts() = listProduct
 

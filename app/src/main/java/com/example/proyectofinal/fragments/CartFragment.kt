@@ -93,7 +93,7 @@ class CartFragment : Fragment(), OnItemClickListener {
             if (LocalCart.isEmpty()){
                 SetToast.set("No hay ningun producto en el carrito", context)
             }else{
-                DataManager.DataManager.insertIntoOrder()
+                DataManager.insertIntoOrder()
             }
         }
     }

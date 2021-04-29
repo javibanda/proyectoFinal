@@ -17,10 +17,10 @@ import com.example.proyectofinal.data.User.getIsConnected
 import com.example.proyectofinal.data.User.getUser
 import com.example.proyectofinal.data.cart.LocalCart
 import com.example.proyectofinal.data.cart.LocalCart.getListDataCart
-import com.example.proyectofinal.dataBase.DataManager.DataManager.getProduct
-import com.example.proyectofinal.dataBase.DataManager.DataManager.getRate
-import com.example.proyectofinal.dataBase.DataManager.DataManager.isRated
-import com.example.proyectofinal.dataBase.DataManager.DataManager.setRate
+import com.example.proyectofinal.dataBase.DataManager.getProduct
+import com.example.proyectofinal.dataBase.DataManager.getRate
+import com.example.proyectofinal.dataBase.DataManager.isRated
+import com.example.proyectofinal.dataBase.DataManager.setRate
 import com.example.proyectofinal.extensions.loadUrl
 import com.example.proyectofinal.util.SetToast
 

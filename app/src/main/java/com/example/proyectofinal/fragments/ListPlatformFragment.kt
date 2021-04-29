@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectofinal.R
 import com.example.proyectofinal.adapter.platform.ListPlatformRecyclerAdapter
-import com.example.proyectofinal.dataBase.DataManager.DataManager.listPlatform
+import com.example.proyectofinal.dataBase.DataManager.listPlatform
 import com.example.proyectofinal.fragments.ListPlatformFragmentArgs
 
 

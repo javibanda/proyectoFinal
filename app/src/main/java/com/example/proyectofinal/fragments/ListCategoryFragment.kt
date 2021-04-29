@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectofinal.R
 import com.example.proyectofinal.adapter.category.ListCategoryRecyclerAdapter
-import com.example.proyectofinal.dataBase.DataManager.DataManager.listCategory
+import com.example.proyectofinal.dataBase.DataManager.listCategory
 
 
 class ListCategoryFragment : Fragment() {

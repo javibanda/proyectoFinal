@@ -17,8 +17,8 @@ import com.example.proyectofinal.data.Person
 import com.example.proyectofinal.data.User.connectedUser
 import com.example.proyectofinal.data.User.getUser
 import com.example.proyectofinal.dataBase.DataManager
-import com.example.proyectofinal.dataBase.DataManager.DataManager.getPerson
-import com.example.proyectofinal.dataBase.DataManager.DataManager.insertIntoPerson
+import com.example.proyectofinal.dataBase.DataManager.getPerson
+import com.example.proyectofinal.dataBase.DataManager.insertIntoPerson
 import com.google.android.material.textfield.TextInputLayout
 
 class CheckInFragment : Fragment() {
@@ -65,9 +65,9 @@ class CheckInFragment : Fragment() {
         btnCheckIn.setOnClickListener {
             if(validInput()){
                 Log.d(":::Persona antes", getUser().toString())
-                if(!DataManager.DataManager.uniqueDni(tiDni.editText!!.text.toString())){
+                if(!DataManager.uniqueDni(tiDni.editText!!.text.toString())){
                     setAlertDialog("YA EXISTE UNA CUENTA CON ESTE DNI")
-                }else if(!DataManager.DataManager.uniqueEmail(tiEmail.editText!!.text.toString())){
+                }else if(!DataManager.uniqueEmail(tiEmail.editText!!.text.toString())){
                     setAlertDialog("YA EXISTE UNA CUENTA CON ESTE EMAIL")
                 }else{
 
@@ -95,7 +95,7 @@ class CheckInFragment : Fragment() {
     }
 
     private fun spinnerRegion(spinner: Spinner){
-        val datos = DataManager.DataManager.listRegion()
+        val datos = DataManager.listRegion()
         val adaptador = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, datos)
         adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adaptador

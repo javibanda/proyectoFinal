@@ -13,7 +13,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.proyectofinal.R
 import com.example.proyectofinal.data.User
 import com.example.proyectofinal.data.User.getIsConnected
-import com.example.proyectofinal.dataBase.DataManager.DataManager.checkMailAndPass
+import com.example.proyectofinal.dataBase.DataManager.checkMailAndPass
 import com.google.android.material.textfield.TextInputLayout
 
 

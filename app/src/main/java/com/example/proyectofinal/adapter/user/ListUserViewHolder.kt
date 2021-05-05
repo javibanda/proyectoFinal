@@ -22,19 +22,29 @@ class ListUserViewHolder(itemView: View) : BaseViewHolder(itemView) {
     fun bindUser(option: String, fragment: Fragment) {
         stringOption = option
         txtOption.text = option
-        directionLogOut(fragment)
+        direction(fragment)
     }
 
-    private fun directionLogOut(fragment: Fragment){
+    private fun direction(fragment: Fragment){
         userView.setOnClickListener {
-
-            if (txtOption.text.toString() == "Cerrar Sesion"){
-                LocalCart.clear()
-                NavHostFragment.findNavController(fragment).navigate(
-                    action.actionListUserFragmentToLogInFragment(true)
-                )
-                User.disconnectedUser()
+            when {
+                txtOption.text.toString() == "Cerrar Sesion" -> navToLogOut(fragment)
+                txtOption.text.toString() == "Historial de compras" -> navToHistory(fragment)
             }
         }
+    }
+
+    private fun navToLogOut(fragment: Fragment){
+        LocalCart.clear()
+        NavHostFragment.findNavController(fragment).navigate(
+                action.actionListUserFragmentToLogInFragment(true)
+        )
+        User.disconnectedUser()
+    }
+
+    private fun navToHistory(fragment: Fragment){
+        NavHostFragment.findNavController(fragment).navigate(
+                action.actionListUserFragmentToHistoryOrdersFragment()
+        )
     }
 }

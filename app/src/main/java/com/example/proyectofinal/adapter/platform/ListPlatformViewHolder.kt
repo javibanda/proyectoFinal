@@ -4,10 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
-import androidx.navigation.compose.navArgument
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.navArgs
 import com.example.proyectofinal.R
 import com.example.proyectofinal.adapter.base.BaseViewHolder
 import com.example.proyectofinal.data.Platform

@@ -1,7 +1,6 @@
 package com.example.proyectofinal.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -33,10 +32,10 @@ class ListUserFragment : Fragment() {
 
     private fun listOptions():List<String>{
         val listOptions = ArrayList<String>()
-        listOptions.add("Information")
-        listOptions.add("History")
-        listOptions.add("Favorites")
-        listOptions.add("Cerrar Sesion")
+        listOptions.add("Información")
+        listOptions.add("Historial de compras")
+        listOptions.add("Favoritos")
+        listOptions.add("Cerrar Sesión")
         return listOptions
     }
 }

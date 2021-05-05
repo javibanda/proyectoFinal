@@ -3,22 +3,19 @@ package com.example.proyectofinal.data.cart
 import android.util.Log
 import com.example.proyectofinal.data.Product
 
-open class Cart (){
+open class Cart(){
 
     private val listDataCart = ArrayList<DataCart>()
     private var price: Float = 0f
     private val listProduct = ArrayList<Product>()
 
     fun add(product: Product, add: Int){
-
         price += product.price * add
-
         if(add >0){
             listProduct.add(product)
         }else{
             listProduct.removeAt(listProduct.lastIndex)
         }
-
         if (contains(product) >= 0){
             listDataCart[getIndex(product)].apply {
                 updateQuantity(getQuantity() + add)
@@ -26,7 +23,6 @@ open class Cart (){
         }else{
             listDataCart.add(DataCart(product, add))
         }
-        //test()
     }
 
     fun getDeliveryPrice(): Float{
@@ -67,8 +63,6 @@ open class Cart (){
         this.price -= price
         listProduct.remove(listDataCart[position].getProduct())
         listDataCart.removeAt(position)
-
-        //test()
     }
 
     fun clear(){
@@ -83,15 +77,4 @@ open class Cart (){
     fun isNotEmpty(): Boolean {
         return getListDataCart().isNotEmpty()
     }
-
-    private fun test(){
-        for (i in listDataCart){
-            Log.d(":::ListDataCart", "${i.getProduct().name} , ${i.getQuantity()} ")
-        }
-        for (i in listProduct){
-            Log.d(":::listProduct", i.name)
-        }
-    }
-
-
 }

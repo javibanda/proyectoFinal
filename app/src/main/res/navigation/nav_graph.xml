@@ -81,6 +81,9 @@
         <action
             android:id="@+id/action_listUserFragment_to_logInFragment"
             app:destination="@id/logInFragment" />
+        <action
+            android:id="@+id/action_listUserFragment_to_historyOrdersFragment"
+            app:destination="@id/historyOrdersFragment" />
     </fragment>
     <fragment
         android:id="@+id/checkInFragment"
@@ -96,4 +99,9 @@
             android:id="@+id/action_cartFragment_to_logInFragment"
             app:destination="@id/logInFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/historyOrdersFragment"
+        android:name="com.example.proyectofinal.fragments.HistoryOrdersFragment"
+        android:label="fragment_history_orders"
+        tools:layout="@layout/fragment_history_orders" />
 </navigation>

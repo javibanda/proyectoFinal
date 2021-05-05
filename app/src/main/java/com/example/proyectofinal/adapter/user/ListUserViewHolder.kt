@@ -28,7 +28,7 @@ class ListUserViewHolder(itemView: View) : BaseViewHolder(itemView) {
     private fun direction(fragment: Fragment){
         userView.setOnClickListener {
             when {
-                txtOption.text.toString() == "Cerrar Sesion" -> navToLogOut(fragment)
+                txtOption.text.toString() == "Cerrar Sesión" -> navToLogOut(fragment)
                 txtOption.text.toString() == "Historial de compras" -> navToHistory(fragment)
             }
         }

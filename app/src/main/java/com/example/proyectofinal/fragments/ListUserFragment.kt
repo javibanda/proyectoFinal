@@ -23,7 +23,6 @@ class ListUserFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d(":::ListOpcionsSize", listOptions().size.toString())
         val userAdapter = ListUserRecyclerAdapter(listOptions(), this)
         recView.apply {
             layoutManager = LinearLayoutManager(activity)

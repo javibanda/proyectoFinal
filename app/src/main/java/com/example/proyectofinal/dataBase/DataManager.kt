@@ -503,5 +503,14 @@ object DataManager {
         return listOrder
     }
 
+    fun getListCart(idOrder: Int): Cart {
+        val cart = Cart()
+        val query = BASE_PRODUCT_SELECT + BASE_CART_JOIN
+        for (i in queryProduct(query, intArrayOf(idOrder))){
+            cart.add(i, 1)
+        }
+        return cart
+    }
+
 
 }

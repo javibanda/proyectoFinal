@@ -3,6 +3,8 @@ package com.example.proyectofinal.dataBase
 import android.util.Log
 import android.widget.EditText
 import com.example.proyectofinal.data.*
+import com.example.proyectofinal.data.cart.Cart
+import com.example.proyectofinal.data.cart.DataCart
 import com.example.proyectofinal.data.cart.LocalCart
 import com.example.proyectofinal.dataBase.SqlConection.SqlConection.getToken
 import com.example.proyectofinal.extensions.toLowerCaseDefaultLocale
@@ -15,13 +17,19 @@ import kotlin.Boolean as Boolean1
 
 object DataManager {
 
-    private const val BASE_PRODUCT_SELECT = "select pr.id, pr.name, pr.description, pr.price, pl.id, pl.name, pl.url, pl.color, pl.color_text, c.id, c.name, c.url, AVG(r.rating) media, COUNT(r.id) count" +
-            " from product pr" +
-            " join platform pl on (pl.id = id_platform)" +
-            " join category c on (c.id = id_category)" +
-            " left join rating r on (pr.id = id_product )"
+    private const val BASE_PRODUCT_SELECT =
+        "select pr.id, pr.name, pr.description, pr.price, pl.id, pl.name, pl.url, pl.color, pl.color_text, c.id, c.name, c.url, AVG(r.rating) media, COUNT(r.id) count" +
+                " from product pr" +
+                " join platform pl on (pl.id = id_platform)" +
+                " join category c on (c.id = id_category)" +
+                " left join rating r on (pr.id = id_product )"
 
     private const val FINAL_PRODUCT_SELECT = " group by pr.id"
+    private const val BASE_CART_JOIN =
+        " left join product_order por on (pr.id = por.id_product)" +
+            " left join orders o on (por.id_order = o.id)" +
+            " where o.id = ?" +
+            " group by pr.id, por.id, o.id"
 
 
     private val connection: Connection = getToken()
@@ -30,7 +38,7 @@ object DataManager {
     fun listCity(): List<City> {
         val listCity = ArrayList<City>()
         val resultSet = connection.createStatement().executeQuery(
-                "select * from city"
+            "select * from city"
         )
         with(resultSet) {
             while (next()) {
@@ -47,14 +55,14 @@ object DataManager {
     fun listRegion(): List<Region> {
         val listRegion = ArrayList<Region>()
         val resultSet = connection.createStatement().executeQuery(
-                "Select id, name from region"
+            "Select id, name from region"
         )
         while (resultSet.next()) {
             val id = resultSet.getInt("id")
             val name = resultSet.getString("name")
 
             val prepareSqlConnection = connection.prepareStatement(
-                    """select c.id, c.name from region r join city c on (c.id_ca = r.id) where r.id = ?"""
+                """select c.id, c.name from region r join city c on (c.id_ca = r.id) where r.id = ?"""
             )
             prepareSqlConnection.setInt(1, id)
             val listCity = ArrayList<City>()
@@ -73,7 +81,7 @@ object DataManager {
 
     fun uniqueDni(dni: String): Boolean1 {
         val prepareSqlConnection = connection.prepareStatement(
-                """SELECT * FROM person WHERE dni LIKE ?"""
+            """SELECT * FROM person WHERE dni LIKE ?"""
         )
         prepareSqlConnection.setString(1, dni)
         val resultSet = prepareSqlConnection.executeQuery()
@@ -82,7 +90,7 @@ object DataManager {
 
     fun uniqueEmail(email: String): Boolean1 {
         val prepareSqlConnection = connection.prepareStatement(
-                """SELECT * FROM person WHERE email LIKE ?"""
+            """SELECT * FROM person WHERE email LIKE ?"""
         )
         prepareSqlConnection.setString(1, email)
         val resultSet = prepareSqlConnection.executeQuery()
@@ -92,7 +100,7 @@ object DataManager {
     fun checkMailAndPass(email: EditText, pass: EditText): Person? {
         var person: Person? = null
         val prepareSqlConnection = connection.prepareStatement(
-                """SELECT p.id, p.dni, p.name, p.lastName, p.secondLastName, p.email, p.pass, c.id, c.name 
+            """SELECT p.id, p.dni, p.name, p.lastName, p.secondLastName, p.email, p.pass, c.id, c.name 
                         |FROM person p  
                         |JOIN city c ON (p.id_city = c.id) 
                         |WHERE p.email LIKE ? 
@@ -114,7 +122,16 @@ object DataManager {
                 val passP = getString("p.pass")
                 val idC = getInt("c.id")
                 val nameC = getString("c.name")
-                person = Person(idP, dniP, nameP, lastNameP, secondLastNameP, emailP, passP, City(idC, nameC))
+                person = Person(
+                    idP,
+                    dniP,
+                    nameP,
+                    lastNameP,
+                    secondLastNameP,
+                    emailP,
+                    passP,
+                    City(idC, nameC)
+                )
             }
         }
         return person
@@ -123,7 +140,7 @@ object DataManager {
     fun getPerson(email: String): Person? {
         var person: Person? = null
         val prepareSqlConnection = connection.prepareStatement(
-                """SELECT p.id, p.dni, p.name, p.lastName, p.secondLastName, p.email, p.pass, c.id, c.name 
+            """SELECT p.id, p.dni, p.name, p.lastName, p.secondLastName, p.email, p.pass, c.id, c.name 
                         |FROM person p  
                         |JOIN city c ON (p.id_city = c.id) 
                         |WHERE p.email LIKE ?
@@ -143,24 +160,34 @@ object DataManager {
                 val passP = getString("p.pass")
                 val idC = getInt("c.id")
                 val nameC = getString("c.name")
-                person = Person(idP, dniP, nameP, lastNameP, secondLastNameP, emailP, passP, City(idC, nameC))
+                person = Person(
+                    idP,
+                    dniP,
+                    nameP,
+                    lastNameP,
+                    secondLastNameP,
+                    emailP,
+                    passP,
+                    City(idC, nameC)
+                )
             }
         }
 
         return person
     }
 
-    fun insertIntoPerson(dni: EditText,
-                         name: EditText,
-                         lastName: EditText,
-                         secondLastName: String?,
-                         email: EditText,
-                         pass: EditText,
-                         id_city: Int
+    fun insertIntoPerson(
+        dni: EditText,
+        name: EditText,
+        lastName: EditText,
+        secondLastName: String?,
+        email: EditText,
+        pass: EditText,
+        id_city: Int
     ) {
         with(connection) {
             val prepareSqlConnection = prepareStatement(
-                    """INSERT INTO person (dni, name, lastName, secondLastName, email, pass, id_city) VALUES (?, ?, ?, ?, ?, ?, ?)"""
+                """INSERT INTO person (dni, name, lastName, secondLastName, email, pass, id_city) VALUES (?, ?, ?, ?, ?, ?, ?)"""
             )
             with(prepareSqlConnection) {
                 setString(1, dni.toUpperCaseDefaultLocale())
@@ -215,6 +242,8 @@ object DataManager {
 
     }
 
+
+
     fun getProduct(idProduct: Int): Product {
         val query: String = BASE_PRODUCT_SELECT +
                 " where pr.id = ?" +
@@ -242,7 +271,7 @@ object DataManager {
                 val rating = getFloat("media")
                 val numRating = getInt("count")
                 val prepareSqlConnection =
-                        connection.prepareStatement("""SELECT * FROM img_product WHERE id_product = ?""")
+                    connection.prepareStatement("""SELECT * FROM img_product WHERE id_product = ?""")
                 prepareSqlConnection.setInt(1, id)
                 with(prepareSqlConnection.executeQuery()) {
                     val listImg = ArrayList<ProductImg>()
@@ -253,18 +282,22 @@ object DataManager {
                     }
 
                     val product = Product(
-                            id,
-                            name,
-                            description,
-                            price,
-                            Category(idCategory, nameCategory, urlCategory),
-                            Platform(idPlatform, namePlatform, urlPlatform, colorPlatform, colorTextPlatform),
-                            rating,
-                            numRating,
-                            listImg
+                        id,
+                        name,
+                        description,
+                        price,
+                        Category(idCategory, nameCategory, urlCategory),
+                        Platform(
+                            idPlatform,
+                            namePlatform,
+                            urlPlatform,
+                            colorPlatform,
+                            colorTextPlatform
+                        ),
+                        rating,
+                        numRating,
+                        listImg
                     )
-
-                    //Log.d(":::Product " + product.id, product.toString())
                     listProduct.add(product)
                 }
             }
@@ -287,7 +320,7 @@ object DataManager {
         val listPlatform = ArrayList<Platform>()
 
         val resultSet = connection.createStatement().executeQuery(
-                "SELECT id, name, url, color, color_text FROM platform"
+            "SELECT id, name, url, color, color_text FROM platform"
         )
         while (resultSet.next()) {
             val id = resultSet.getInt("id")
@@ -314,7 +347,7 @@ object DataManager {
         }
         with(connection) {
             val prepareSqlConnection = prepareStatement(
-                    """SELECT * 
+                """SELECT * 
                            |FROM rating
                            |WHERE id_product = ?
                            |AND id_person = ?
@@ -336,7 +369,7 @@ object DataManager {
 
         with(connection) {
             val prepareSqlConnection = prepareStatement(
-                    """INSERT INTO rating (rating, id_product, id_person)
+                """INSERT INTO rating (rating, id_product, id_person)
                             |VALUES (?, ?, ?)
                        """.trimMargin()
             )
@@ -353,7 +386,7 @@ object DataManager {
         var rating: Float = 0.0F
         with(connection) {
             val prepareSqlConnection = prepareStatement(
-                    """SELECT p.name, AVG(r.rating) as rat
+                """SELECT p.name, AVG(r.rating) as rat
                             |FROM product p
                             |LEFT JOIN rating r ON (p.id = r.id_product)
                             |WHERE p.id = ?
@@ -377,7 +410,7 @@ object DataManager {
     fun insertIntoOrder() {
         with(connection) {
             val prepareSqlConnection = prepareStatement(
-                    """INSERT INTO orders (date, time,  price_products, price_delivery, total_price, id_person, id_city, street)
+                """INSERT INTO orders (date, time,  price_products, price_delivery, total_price, id_person, id_city, street)
                             |VALUES (?,?,?,?,?,?, ?, ?)
                         """.trimMargin()
             )
@@ -403,7 +436,7 @@ object DataManager {
         for (product in LocalCart.getProducts()) {
             with(connection) {
                 val prepareSqlConection = prepareStatement(
-                        """INSERT INTO product_order(id_order, id_product)
+                    """INSERT INTO product_order(id_order, id_product)
                                 |VALUES (?, ?)
                             """.trimMargin()
                 )
@@ -418,7 +451,8 @@ object DataManager {
 
     private fun getLastOrder(): Int {
         var id = 0
-        val resultSet = connection.createStatement().executeQuery("SELECT id FROM orders ORDER BY id DESC LIMIT 1")
+        val resultSet = connection.createStatement()
+            .executeQuery("SELECT id FROM orders ORDER BY id DESC LIMIT 1")
         with(resultSet) {
             while (next()) {
                 id = getInt("id")
@@ -427,29 +461,41 @@ object DataManager {
         return id
     }
 
-    fun getOrderHistory(person: Person): List<Order>{
+    fun getOrderHistory(person: Person): List<Order> {
         val listOrder = ArrayList<Order>()
-        with(connection){
-            val prepareSqlConnection = prepareStatement("""
+        with(connection) {
+            val prepareSqlConnection = prepareStatement(
+                """
                 SELECT o.id, o.date, o.time, o.price_products, o.price_delivery, o.id_person, c.id, c.name
                 FROM orders o 
                 JOIN city c ON c.id = o.id_city 
                 WHERE o.id_person = ? 
-            """.trimIndent())
-            with(prepareSqlConnection){
+            """.trimIndent()
+            )
+            with(prepareSqlConnection) {
                 setInt(1, person.id)
-                with(prepareSqlConnection.executeQuery()){
-                    while (next()){
+                with(prepareSqlConnection.executeQuery()) {
+                    while (next()) {
                         val id = getInt("o.id")
                         val date = getDate("o.date")
                         val time = getTime("o.time")
                         val priceProduct = getFloat("o.price_products")
-                        val priceDelivery= getFloat("o.price_delivery")
+                        val priceDelivery = getFloat("o.price_delivery")
                         val city = City(
-                                getInt("c.id"),
-                                getString("c.name")
+                            getInt("c.id"),
+                            getString("c.name")
                         )
-                        listOrder.add(Order(id, Date(date, time), priceProduct, priceDelivery, person, city))
+                        listOrder
+                            .add(
+                                Order(
+                                    id,
+                                    Date(date, time),
+                                    priceProduct,
+                                    priceDelivery,
+                                    person,
+                                    city
+                                )
+                            )
                     }
                 }
             }

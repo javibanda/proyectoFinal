@@ -94,6 +94,9 @@ class CartFragment : Fragment(), OnItemClickListener {
                 SetToast.set("No hay ningun producto en el carrito", context)
             }else{
                 DataManager.insertIntoOrder()
+                LocalCart.clear()
+                recyclerViewCart.adapter?.notifyDataSetChanged()
+                updateTotalPrice()
             }
         }
     }

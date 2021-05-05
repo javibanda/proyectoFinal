@@ -9,18 +9,16 @@ import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import androidx.navigation.NavOptions
 import com.example.proyectofinal.R
+import com.example.proyectofinal.data.ProductImg
 import com.squareup.picasso.Picasso
 import java.util.*
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = true): View =
         LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
 
-fun ImageView.loadUrl(url: String, ){
+fun ImageView.loadUrl(url: String ){
     Picasso.with(context).load(url).resize(context.convertDpToPX( 200), context.convertDpToPX(100)).into(this)
 }
-
-
-
 
 fun EditText.toUpperCaseDefaultLocale():String? =
         text.toString().toUpperCase(Locale.getDefault())

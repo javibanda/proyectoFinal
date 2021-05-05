@@ -103,5 +103,18 @@
         android:id="@+id/historyOrdersFragment"
         android:name="com.example.proyectofinal.fragments.HistoryOrdersFragment"
         android:label="fragment_history_orders"
-        tools:layout="@layout/fragment_history_orders" />
+        tools:layout="@layout/fragment_history_orders" >
+        <action
+            android:id="@+id/action_historyOrdersFragment_to_listCartFragment"
+            app:destination="@id/listCartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listCartFragment"
+        android:name="com.example.proyectofinal.fragments.ListCartFragment"
+        android:label="fragment_list_cart"
+        tools:layout="@layout/fragment_list_cart" >
+        <argument
+            android:name="id_order"
+            app:argType="integer" />
+    </fragment>
 </navigation>

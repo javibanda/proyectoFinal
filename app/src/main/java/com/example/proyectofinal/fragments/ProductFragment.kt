@@ -1,6 +1,7 @@
 package com.example.proyectofinal.fragments
 
 import android.annotation.SuppressLint
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,15 +17,17 @@ import com.example.proyectofinal.data.Product
 import com.example.proyectofinal.data.User.getIsConnected
 import com.example.proyectofinal.data.User.getUser
 import com.example.proyectofinal.data.cart.LocalCart
-import com.example.proyectofinal.data.cart.LocalCart.getListDataCart
+import com.example.proyectofinal.dataBase.DataManager.deleteFavorites
 import com.example.proyectofinal.dataBase.DataManager.getProduct
 import com.example.proyectofinal.dataBase.DataManager.getRate
+import com.example.proyectofinal.dataBase.DataManager.insertIntoFavorites
 import com.example.proyectofinal.dataBase.DataManager.isRated
 import com.example.proyectofinal.dataBase.DataManager.setRate
 import com.example.proyectofinal.extensions.loadUrl
 import com.example.proyectofinal.util.SetToast
 
 
+@Suppress("DEPRECATION")
 class ProductFragment : Fragment() {
 
     private val args: ProductFragmentArgs by navArgs()
@@ -36,13 +39,17 @@ class ProductFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var imgProduct: ImageView
     private lateinit var btnBuy: Button
-    private lateinit var btnFav: Button
+    private lateinit var imgFavorites: ImageView
     private lateinit var btnRating: Button
     private lateinit var ratingBar: RatingBar
+    private lateinit var drawableStarBigOn: Drawable
+    private lateinit var drawableStarBigOf: Drawable
+
     private var product: Product? = null
 
     private var action = ProductFragmentDirections
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_product, container, false)
@@ -54,9 +61,11 @@ class ProductFragment : Fragment() {
         txtPrice1 = view.findViewById(R.id.txtPrice1)
         txtPrice2 = view.findViewById(R.id.txtPrice2)
         btnBuy = view.findViewById(R.id.btnBuyProduct)
-        btnFav = view.findViewById(R.id.btnFavProduct)
+        imgFavorites = view.findViewById(R.id.imgFavorites)
         ratingBar = view.findViewById(R.id.ratingBar)
         btnRating = view.findViewById(R.id.btnRating)
+        drawableStarBigOn = resources.getDrawable(android.R.drawable.star_big_on)
+        drawableStarBigOf = resources.getDrawable(android.R.drawable.star_big_off)
         return view
     }
 
@@ -75,6 +84,7 @@ class ProductFragment : Fragment() {
         btnRatingClick()
         setRatingBar()
         listenerRatingBar()
+        listenerBtnFavorites()
     }
 
     private fun btnRatingClick(){
@@ -127,15 +137,56 @@ class ProductFragment : Fragment() {
         }
     }
 
+    private fun listenerBtnFavorites(){
+            setDrawableFavorite()
+        imgFavorites.setOnClickListener {
+            if (getIsConnected()){
+                addOrRemoveFavorite()
+            }else{
+                super.onDestroy()
+                NavHostFragment.findNavController(this).navigate(
+                    ProductFragmentDirections.actionProductFragmentToLogInFragment(true)
+                )
+            }
+        }
+    }
+
+    private fun addOrRemoveFavorite(){
+        if(getUser()!!.isFavorite(product!!.id)){
+            deleteFavorites(product!!.id, getUser()!!)
+            setOffImgFavorites()
+        }else{
+            insertIntoFavorites(product!!.id, getUser()!!)
+            setOnImgFavorites()
+        }
+    }
+
+    private fun setDrawableFavorite(){
+        if ( !getIsConnected()){
+            setOffImgFavorites()
+
+        }else if (!getUser()!!.isFavorite(product!!.id)){
+            setOffImgFavorites()
+        }
+        else{
+            setOnImgFavorites()
+        }
+    }
+
+    private fun setOnImgFavorites(){
+        imgFavorites.setImageDrawable(drawableStarBigOn)
+    }
+
+    private fun setOffImgFavorites(){
+        imgFavorites.setImageDrawable(drawableStarBigOf)
+    }
+
 
 
     private fun listenerBtnBuy() {
         btnBuy.setOnClickListener {
             if (getIsConnected()){
                 LocalCart.add(product!!, 1)
-                for (i in getListDataCart()){
-                    //Log.d(":::ListCart", i.product.name + ": " + i.count)
-                }
             }else{
                 super.onDestroy()
                 NavHostFragment.findNavController(this).navigate(

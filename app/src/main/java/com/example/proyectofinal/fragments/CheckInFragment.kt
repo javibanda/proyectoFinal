@@ -64,7 +64,6 @@ class CheckInFragment : Fragment() {
 
         btnCheckIn.setOnClickListener {
             if(validInput()){
-                Log.d(":::Persona antes", getUser().toString())
                 if(!DataManager.uniqueDni(tiDni.editText!!.text.toString())){
                     setAlertDialog("YA EXISTE UNA CUENTA CON ESTE DNI")
                 }else if(!DataManager.uniqueEmail(tiEmail.editText!!.text.toString())){
@@ -80,18 +79,15 @@ class CheckInFragment : Fragment() {
                         tiPass.editText!!,
                         idCity
                     )
-                    connectUser(tiEmail.editText!!.text.toString().toLowerCase())
-                    Log.d(":::Persona despues", getUser().toString())
+                    connectUser(tiEmail.editText!!, tiPass.editText!!)
                     requireActivity().onBackPressedDispatcher.onBackPressed()
-
-                    Log.d(":::Datos", "se realiza el insertInto")
                 }
             }
         }
     }
 
-    private fun connectUser(email: String){
-        connectedUser(getPerson(email))
+    private fun connectUser(email: EditText, pass: EditText){
+        connectedUser(getPerson(email, pass))
     }
 
     private fun spinnerRegion(spinner: Spinner){

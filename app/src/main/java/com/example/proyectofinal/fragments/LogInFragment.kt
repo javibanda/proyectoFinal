@@ -1,6 +1,5 @@
 package com.example.proyectofinal.fragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,7 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.proyectofinal.R
 import com.example.proyectofinal.data.User
 import com.example.proyectofinal.data.User.getIsConnected
-import com.example.proyectofinal.dataBase.DataManager.checkMailAndPass
+import com.example.proyectofinal.dataBase.DataManager.getPerson
 import com.google.android.material.textfield.TextInputLayout
 
 
@@ -55,10 +54,10 @@ class LogInFragment : Fragment() {
 
     private fun pressLogIn(){
         btnLogIn.setOnClickListener {
-            if (checkMailAndPass(etEmail.editText!!, etPass.editText!!) == null){
+            if (getPerson(etEmail.editText!!, etPass.editText!!) == null){
                 textInputsError()
             }else{
-                User.connectedUser(checkMailAndPass(etEmail.editText!!, etPass.editText!!))
+                User.connectedUser(getPerson(etEmail.editText!!, etPass.editText!!))
                 changeFragment()
             }
         }
@@ -66,7 +65,6 @@ class LogInFragment : Fragment() {
 
     private fun pressCheckIn(){
         btnCheck.setOnClickListener {
-            Log.d(":::boton presionado", "sdfsdf")
             NavHostFragment.findNavController(this).navigate(
                     action.actionLogInFragmentToCheckInFragment()
             )

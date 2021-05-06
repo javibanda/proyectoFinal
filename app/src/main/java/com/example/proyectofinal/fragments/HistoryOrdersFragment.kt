@@ -33,7 +33,6 @@ class HistoryOrdersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         listHistoryIsEmpty()
-        Log.d(":::History", listHistory.size.toString())
         val historyAdapter = ListHistoryRecyclerAdapter(listHistory, this)
         recView.apply {
             layoutManager = LinearLayoutManager(activity)

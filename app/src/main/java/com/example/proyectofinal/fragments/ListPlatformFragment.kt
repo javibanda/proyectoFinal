@@ -16,7 +16,7 @@ import com.example.proyectofinal.fragments.ListPlatformFragmentArgs
 
 
 class ListPlatformFragment : Fragment() {
-    val args: ListPlatformFragmentArgs by navArgs()
+    private val args: ListPlatformFragmentArgs by navArgs()
     private lateinit var recView: RecyclerView
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View?
@@ -28,8 +28,6 @@ class ListPlatformFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d(":::Args", args.idCategory.toString())
-
         val platformAdapter = ListPlatformRecyclerAdapter(listPlatform(), this, args.idCategory)
         recView.apply {
             layoutManager = LinearLayoutManager(activity)

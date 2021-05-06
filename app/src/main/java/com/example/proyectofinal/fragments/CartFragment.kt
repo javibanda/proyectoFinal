@@ -102,7 +102,6 @@ class CartFragment : Fragment(), OnItemClickListener {
     }
 
     override fun onItemClick(position: Int) {
-        Log.d(":::Test: ", position.toString())
         LocalCart.remove(position)
         recyclerViewCart.adapter?.notifyDataSetChanged()
         updateTotalPrice()

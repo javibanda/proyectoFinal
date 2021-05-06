@@ -66,6 +66,7 @@ open class Cart(){
     }
 
     fun clear(){
+        listProduct.clear()
         listDataCart.clear()
         price = 0.0f
     }

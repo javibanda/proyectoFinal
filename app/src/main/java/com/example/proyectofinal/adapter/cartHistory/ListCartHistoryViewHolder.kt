@@ -1,5 +1,6 @@
 package com.example.proyectofinal.adapter.cartHistory
 
+import android.annotation.SuppressLint
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -24,12 +25,13 @@ class ListCartHistoryViewHolder(itemView: View): BaseViewHolder(itemView) {
     private val imgProductCartHistory = itemView
         .findViewById<ImageView>(R.id.imgProductCartHistory)
 
+    @SuppressLint("SetTextI18n")
     fun bindListCart(cart: DataCart, fragment: Fragment){
         txtNameProductCartHistory.text = cart.getProduct().name
         txtPlatformProductCartHistory.text = cart.getProductPlatformName()
-        txtPriceProductCartHistory.text = cart.getProduct().price.toString()
-        txtQuantityProductCartHistory.text = cart.getQuantity().toString()
-        txtTotalPriceProductCartHistory.text = String.format("%.2f",cart.getTotalPrice())
+        txtPriceProductCartHistory.text = cart.getProduct().price.toString() +  " €"
+        txtQuantityProductCartHistory.text = "X" + cart.getQuantity().toString()
+        txtTotalPriceProductCartHistory.text = String.format("%.2f",cart.getTotalPrice()) + " €"
         imgProductCartHistory.loadUrl(cart.getProduct().listImg.first().url)
     }
 }

@@ -1,5 +1,6 @@
 package com.example.proyectofinal.adapter.history
 
+import android.annotation.SuppressLint
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -18,9 +19,10 @@ class ListHistoryViewHolder(itemView: View): BaseViewHolder(itemView) {
     private val action = HistoryOrdersFragmentDirections
 
 
+    @SuppressLint("SetTextI18n")
     fun bindOrders(order: Order, fragment: Fragment){
-        idOrderHistory.text = order.id.toString()
-        txtPriceHistory.text = String.format("%.2f",order.priceProducts)
+        idOrderHistory.text = String.format("%08d%n", order.id)
+        txtPriceHistory.text = String.format("%.2f",order.priceProducts) + " €"
         txtDateHistory.text = order.date.getDateFormat()
         txtTimeHistory.text = order.date.getTimeFormat()
         navToCartHistory(fragment, order)

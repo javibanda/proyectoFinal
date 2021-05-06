@@ -48,6 +48,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/recyclerViewImg" />
 
 
+            <ImageView
+                android:id="@+id/imgFavorites"
+                android:layout_width="67dp"
+                android:layout_height="67dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginBottom="24dp"
+                android:src="@android:drawable/btn_star_big_on"
+                app:layout_constraintBottom_toBottomOf="@+id/imgProduct"
+                app:layout_constraintStart_toStartOf="parent" />
+
             <TextView
                 android:id="@+id/txtPlatform"
                 style="@style/MainLettersBold"
@@ -147,31 +157,16 @@ Por culpa de una terrible tormenta, Link naufraga y acaba llegando a la costa de
 
 
             <Button
-                android:id="@+id/btnFavProduct"
-                style="@style/OrangeButton"
-                android:layout_width="169dp"
-                android:layout_height="70dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="8dp"
-                android:text="FAVORITOS"
-                app:backgroundTint="@color/red"
-                app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtDetails" />
-
-            <Button
                 android:id="@+id/btnBuyProduct"
                 style="@style/OrangeButton"
-                android:layout_width="170dp"
+                android:layout_width="0dp"
                 android:layout_height="70dp"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="8dp"
                 android:text="COMPRAR"
                 app:backgroundTint="@color/red"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="@+id/guideline4"
                 app:layout_constraintTop_toBottomOf="@+id/txtDetails" />
 
 
@@ -202,7 +197,7 @@ Por culpa de una terrible tormenta, Link naufraga y acaba llegando a la costa de
                 android:layout_height="wrap_content"
                 android:text="MEDIA DEL PRODUCTO"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
-                app:layout_constraintTop_toBottomOf="@+id/btnFavProduct" />
+                app:layout_constraintTop_toBottomOf="@+id/btnBuyProduct" />
 
             <Button
                 android:id="@+id/btnRating"

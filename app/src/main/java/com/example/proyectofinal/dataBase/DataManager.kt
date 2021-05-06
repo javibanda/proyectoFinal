@@ -4,7 +4,6 @@ import android.util.Log
 import android.widget.EditText
 import com.example.proyectofinal.data.*
 import com.example.proyectofinal.data.cart.Cart
-import com.example.proyectofinal.data.cart.DataCart
 import com.example.proyectofinal.data.cart.LocalCart
 import com.example.proyectofinal.dataBase.SqlConection.SqlConection.getToken
 import com.example.proyectofinal.extensions.toLowerCaseDefaultLocale
@@ -30,6 +29,17 @@ object DataManager {
             " left join orders o on (por.id_order = o.id)" +
             " where o.id = ?" +
             " group by pr.id, por.id, o.id"
+
+    private const val DELETE_FAVORITES = """
+        DELETE FROM favourite 
+        WHERE id_product = ?
+        AND id_person = ?
+        """
+
+    private const val INSERT_INTO_FAVORITES = """
+         INSERT INTO favourite(id_product, id_person)
+         VALUES (?, ?)
+    """
 
 
     private val connection: Connection = getToken()
@@ -97,7 +107,7 @@ object DataManager {
         return !resultSet.next()
     }
 
-    fun checkMailAndPass(email: EditText, pass: EditText): Person? {
+    fun getPerson(email: EditText, pass: EditText): Person? {
         var person: Person? = null
         val prepareSqlConnection = connection.prepareStatement(
             """SELECT p.id, p.dni, p.name, p.lastName, p.secondLastName, p.email, p.pass, c.id, c.name 
@@ -122,6 +132,7 @@ object DataManager {
                 val passP = getString("p.pass")
                 val idC = getInt("c.id")
                 val nameC = getString("c.name")
+
                 person = Person(
                     idP,
                     dniP,
@@ -130,50 +141,61 @@ object DataManager {
                     secondLastNameP,
                     emailP,
                     passP,
-                    City(idC, nameC)
+                    City(idC, nameC),
+                    getListFavorites(idP)
                 )
             }
         }
         return person
     }
 
-    fun getPerson(email: String): Person? {
-        var person: Person? = null
+    private fun getListFavorites(idPerson: Int): ArrayList<Int>{
+        val listFavorites = ArrayList<Int>()
         val prepareSqlConnection = connection.prepareStatement(
-            """SELECT p.id, p.dni, p.name, p.lastName, p.secondLastName, p.email, p.pass, c.id, c.name 
-                        |FROM person p  
-                        |JOIN city c ON (p.id_city = c.id) 
-                        |WHERE p.email LIKE ?
-                    """.trimMargin()
+            """
+                SELECT p.id
+                from favourite f
+                join product p on (f.id_product = p.id)
+                where f.id_person = ?
+            """.trimIndent()
+
         )
-        with(prepareSqlConnection) {
-            setString(1, email)
+        with(prepareSqlConnection){
+            setInt(1, idPerson)
         }
-        with(prepareSqlConnection.executeQuery()) {
-            while (next()) {
-                val idP = getInt("p.id")
-                val dniP = getString("p.dni")
-                val nameP = getString("p.name")
-                val lastNameP = getString("p.lastName")
-                val secondLastNameP: String? = getString("p.secondLastName")
-                val emailP = getString("p.email")
-                val passP = getString("p.pass")
-                val idC = getInt("c.id")
-                val nameC = getString("c.name")
-                person = Person(
-                    idP,
-                    dniP,
-                    nameP,
-                    lastNameP,
-                    secondLastNameP,
-                    emailP,
-                    passP,
-                    City(idC, nameC)
-                )
+        with(prepareSqlConnection.executeQuery()){
+            while (next()){
+                listFavorites.add(getInt("p.id"))
+            }
+
+        }
+        return listFavorites
+    }
+
+    fun insertIntoFavorites(idProduct: Int, person: Person){
+        baseFavorites(idProduct, person, INSERT_INTO_FAVORITES)
+        person.addFavorite(idProduct)
+    }
+
+    fun deleteFavorites(idProduct: Int, person: Person){
+        baseFavorites(idProduct, person, DELETE_FAVORITES)
+        person.removeFavorite(idProduct)
+    }
+
+
+    private fun baseFavorites(
+        idProduct: Int,
+        person: Person,
+        sqlQuery: String
+    ){
+        with(connection){
+            val prepareSqlConnection = prepareStatement(sqlQuery)
+            with(prepareSqlConnection){
+                setInt(1, idProduct)
+                setInt(2, person.id)
+                execute()
             }
         }
-
-        return person
     }
 
     fun insertIntoPerson(
@@ -335,13 +357,6 @@ object DataManager {
 
 
     fun isRated(product: Product, person: Person?): kotlin.Boolean {
-//            var cadena = ""
-//            if (person == null){
-//                cadena = "No hay usuario registrado"
-//            }else{
-//                cadena = person.id.toString() + ": " + person.name
-//            }
-//            Log.d(":::Favoritos", cadena +"\n"+ product.id.toString() + ": " + product.name )
         if (person == null) {
             return false
         }
@@ -364,7 +379,6 @@ object DataManager {
     }
 
     fun setRate(rating: Int, product: Product, person: Person) {
-        Log.d(":::RatingIntroducido", rating.toString())
         var rat: Float = 0.0F
 
         with(connection) {

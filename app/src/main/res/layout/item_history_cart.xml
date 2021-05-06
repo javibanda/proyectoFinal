@@ -67,7 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.8333333" />
+        app:layout_constraintGuide_percent="0.77" />
 
     <TextView
         android:gravity="center"
@@ -80,7 +80,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtPlatformProductCartHistory" />
 
     <TextView
-        android:gravity="center"
+        android:gravity="center_vertical"
         android:id="@+id/txtQuantityProductCartHistory"
         android:layout_width="0dp"
         android:layout_height="30dp"

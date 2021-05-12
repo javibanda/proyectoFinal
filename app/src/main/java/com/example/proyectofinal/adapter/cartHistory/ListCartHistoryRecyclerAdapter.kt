@@ -7,7 +7,7 @@ import com.example.proyectofinal.adapter.base.BaseRecyclerAdapter
 import com.example.proyectofinal.data.cart.Cart
 import com.example.proyectofinal.data.cart.DataCart
 
-class ListCartHistoryRecyclerAdapter (
+class  ListCartHistoryRecyclerAdapter (
     private val itemsList: List<DataCart>,
     private val fragment: Fragment
 ) : BaseRecyclerAdapter<DataCart, ListCartHistoryViewHolder>(itemsList)  {

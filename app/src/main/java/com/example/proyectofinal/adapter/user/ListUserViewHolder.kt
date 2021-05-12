@@ -30,6 +30,8 @@ class ListUserViewHolder(itemView: View) : BaseViewHolder(itemView) {
             when {
                 txtOption.text.toString() == "Cerrar Sesión" -> navToLogOut(fragment)
                 txtOption.text.toString() == "Historial de compras" -> navToHistory(fragment)
+                txtOption.text.toString() == "Favoritos" -> navToFavorites(fragment)
+//              txtOption.text.toString() == "Algo" ->
             }
         }
     }
@@ -45,6 +47,12 @@ class ListUserViewHolder(itemView: View) : BaseViewHolder(itemView) {
     private fun navToHistory(fragment: Fragment){
         NavHostFragment.findNavController(fragment).navigate(
                 action.actionListUserFragmentToHistoryOrdersFragment()
+        )
+    }
+
+    private fun navToFavorites(fragment: Fragment){
+        NavHostFragment.findNavController(fragment).navigate(
+            action.actionListUserFragmentToListFavoritesFragment()
         )
     }
 }

@@ -527,4 +527,13 @@ object DataManager {
     }
 
 
+    fun getFavoriteList(): List<Product>{
+        val listFavorites = ArrayList<Product>()
+        for (i in User.getUser()!!.listFavorites){
+            listFavorites.add(getProduct(i))
+        }
+        return listFavorites
+    }
+
+
 }

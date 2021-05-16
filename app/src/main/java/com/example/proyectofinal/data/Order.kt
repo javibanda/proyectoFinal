@@ -1,5 +1,6 @@
 package com.example.proyectofinal.data
 
+import com.example.proyectofinal.extensions.setFormatFloat
 import com.example.proyectofinal.util.Date
 
 class Order(val id: Int,
@@ -12,4 +13,8 @@ class Order(val id: Int,
     override fun toString(): String {
         return "Order(id=$id, date=$date, priceProducts=$priceProducts, priceDelivery=$priceDelivery, person=$person, city=$city)"
     }
+
+    fun getPriceProductsFormat() = priceProducts.setFormatFloat()
+
+    fun getPriceDeliveryFormat() = priceDelivery.setFormatFloat()
 }

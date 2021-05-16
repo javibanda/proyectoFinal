@@ -2,6 +2,7 @@ package com.example.proyectofinal.data.cart
 
 import android.util.Log
 import com.example.proyectofinal.data.Product
+import com.example.proyectofinal.extensions.setFormatFloat
 
 open class Cart(){
 
@@ -57,6 +58,8 @@ open class Cart(){
     }
 
     fun getPrice() = price
+
+    fun getPriceString() = price.setFormatFloat()
 
     fun remove(position: Int){
         val price = listDataCart[position].getTotalPrice()

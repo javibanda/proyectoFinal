@@ -1,5 +1,7 @@
 package com.example.proyectofinal.data
 
+import com.example.proyectofinal.extensions.setFormatFloat
+
 
 data class Product(
         val id: Int,
@@ -38,6 +40,8 @@ data class Product(
         override fun hashCode(): Int {
                 return id
         }
+
+        fun getPriceString() = price.setFormatFloat()
 
 
 }

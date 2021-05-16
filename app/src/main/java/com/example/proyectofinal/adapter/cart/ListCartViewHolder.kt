@@ -49,7 +49,7 @@ class ListCartViewHolder(itemView: View) : BaseViewHolder(itemView){
     private fun addOrRemoveOne(cart: DataCart, add: Int) {
         LocalCart.add(cart.getProduct(), add)
         listener.onItemClick()
-        txtPriceProduct.text = String.format("%.2f", cart.getTotalPrice())
+        txtPriceProduct.text = cart.getTotalPriceFormat()
         txtCount.text = cart.getQuantity().toString()
     }
 }

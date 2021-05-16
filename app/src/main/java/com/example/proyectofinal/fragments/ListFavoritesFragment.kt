@@ -12,6 +12,7 @@ import com.example.proyectofinal.adapter.favorite.ListFavoriteRecyclerAdapter
 import com.example.proyectofinal.data.Product
 import com.example.proyectofinal.data.User
 import com.example.proyectofinal.dataBase.DataManager
+import com.example.proyectofinal.dataBase.DataManager.getFavoriteList
 import com.example.proyectofinal.dataBase.DataManager.getProduct
 
 
@@ -36,13 +37,4 @@ class ListFavoritesFragment : Fragment() {
             adapter = favoriteAdapter
         }
     }
-
-    private fun getFavoriteList(): List<Product>{
-        val listFavorites = ArrayList<Product>()
-        for (i in User.getUser()!!.listFavorites){
-            listFavorites.add(getProduct(i))
-        }
-        return listFavorites
-    }
-
 }

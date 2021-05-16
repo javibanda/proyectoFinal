@@ -22,7 +22,7 @@ class ListHistoryViewHolder(itemView: View): BaseViewHolder(itemView) {
     @SuppressLint("SetTextI18n")
     fun bindOrders(order: Order, fragment: Fragment){
         idOrderHistory.text = String.format("%08d%n", order.id)
-        txtPriceHistory.text = String.format("%.2f",order.priceProducts) + " €"
+        txtPriceHistory.text = order.getPriceProductsFormat() + " €"
         txtDateHistory.text = order.date.getDateFormat()
         txtTimeHistory.text = order.date.getTimeFormat()
         navToCartHistory(fragment, order)

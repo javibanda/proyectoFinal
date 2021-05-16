@@ -31,7 +31,7 @@ class ListCartHistoryViewHolder(itemView: View): BaseViewHolder(itemView) {
         txtPlatformProductCartHistory.text = cart.getProductPlatformName()
         txtPriceProductCartHistory.text = cart.getProduct().price.toString() +  " €"
         txtQuantityProductCartHistory.text = "X" + cart.getQuantity().toString()
-        txtTotalPriceProductCartHistory.text = String.format("%.2f",cart.getTotalPrice()) + " €"
+        txtTotalPriceProductCartHistory.text = cart.getTotalPriceFormat() + " €"
         imgProductCartHistory.loadUrl(cart.getProduct().listImg.first().url)
     }
 }

@@ -18,6 +18,7 @@ import com.example.proyectofinal.adapter.base.OnItemClickListener
 import com.example.proyectofinal.data.User.getIsConnected
 import com.example.proyectofinal.data.cart.LocalCart
 import com.example.proyectofinal.data.cart.LocalCart.getPrice
+import com.example.proyectofinal.data.cart.LocalCart.getPriceString
 import com.example.proyectofinal.dataBase.DataManager
 import com.example.proyectofinal.util.SetToast
 
@@ -113,7 +114,7 @@ class CartFragment : Fragment(), OnItemClickListener {
 
     @SuppressLint("SetTextI18n")
     private fun updateTotalPrice(){
-        val totalPrice = String.format("%.2f",getPrice())
+        val totalPrice = getPriceString()
         txtTotalCart.text = "TOTAL:       $totalPrice€"
     }
 }

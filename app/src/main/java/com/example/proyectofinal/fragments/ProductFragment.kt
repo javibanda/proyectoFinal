@@ -202,7 +202,7 @@ class ProductFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun setPrice() {
         val price = String.format("%.2f",product!!.price)
-        val arrayPrice = price.split('.')
+        val arrayPrice = price.split(',')
         txtPrice1.text = arrayPrice[0] + ","
         txtPrice2.text = arrayPrice[1] + "€"
     }

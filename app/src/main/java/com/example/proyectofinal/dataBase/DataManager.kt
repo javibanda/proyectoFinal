@@ -48,13 +48,14 @@ object DataManager {
     fun listCity(): List<City> {
         val listCity = ArrayList<City>()
         val resultSet = connection.createStatement().executeQuery(
-            "select * from city"
+            "select c.id, c.name, r.name from city c join region r on r.id = c.id_ca"
         )
         with(resultSet) {
             while (next()) {
-                val id = getInt("id")
-                val name = getString("name")
-                listCity.add(City(id, name))
+                val id = getInt("c.id")
+                val name = getString("c.name")
+                val nameRegion = getString("r.name")
+                listCity.add(City(id, name, nameRegion))
             }
         }
 
@@ -72,7 +73,10 @@ object DataManager {
             val name = resultSet.getString("name")
 
             val prepareSqlConnection = connection.prepareStatement(
-                """select c.id, c.name from region r join city c on (c.id_ca = r.id) where r.id = ?"""
+                """SELECT c.id, c.name, r.name
+                | FROM region r
+                | JOIN city c ON (c.id_ca = r.id) 
+                | WHERE r.id = ?""".trimMargin()
             )
             prepareSqlConnection.setInt(1, id)
             val listCity = ArrayList<City>()
@@ -81,7 +85,8 @@ object DataManager {
                 while (next()) {
                     val idC = getInt("c.id")
                     val nameC = getString("c.name")
-                    listCity.add(City(idC, nameC))
+                    val nameRegion = getString("r.name")
+                    listCity.add(City(idC, nameC, nameRegion))
                 }
             }
             listRegion.add(Region(id, name, listCity))
@@ -110,9 +115,10 @@ object DataManager {
     fun getPerson(email: EditText, pass: EditText): Person? {
         var person: Person? = null
         val prepareSqlConnection = connection.prepareStatement(
-            """SELECT p.id, p.dni, p.name, p.lastName, p.secondLastName, p.email, p.pass, c.id, c.name 
+            """SELECT p.id, p.dni, p.name, p.lastName, p.secondLastName, p.email, p.pass, c.id, c.name, r.name 
                         |FROM person p  
                         |JOIN city c ON (p.id_city = c.id) 
+                        |JOIN region r ON (id_ca = r.id)
                         |WHERE p.email LIKE ? 
                         |AND p.pass LIKE ?
                     """.trimMargin()
@@ -132,6 +138,7 @@ object DataManager {
                 val passP = getString("p.pass")
                 val idC = getInt("c.id")
                 val nameC = getString("c.name")
+                val nameRegion = getString("r.name")
 
                 person = Person(
                     idP,
@@ -141,7 +148,7 @@ object DataManager {
                     secondLastNameP,
                     emailP,
                     passP,
-                    City(idC, nameC),
+                    City(idC, nameC, nameRegion),
                     getListFavorites(idP)
                 )
             }
@@ -480,9 +487,10 @@ object DataManager {
         with(connection) {
             val prepareSqlConnection = prepareStatement(
                 """
-                SELECT o.id, o.date, o.time, o.price_products, o.price_delivery, o.id_person, c.id, c.name
+                SELECT o.id, o.date, o.time, o.price_products, o.price_delivery, o.id_person, c.id, c.name, r.name
                 FROM orders o 
                 JOIN city c ON c.id = o.id_city 
+                JOIN region r ON r.id = c.id_ca
                 WHERE o.id_person = ? 
             """.trimIndent()
             )
@@ -497,7 +505,8 @@ object DataManager {
                         val priceDelivery = getFloat("o.price_delivery")
                         val city = City(
                             getInt("c.id"),
-                            getString("c.name")
+                            getString("c.name"),
+                            getString("r.name")
                         )
                         listOrder
                             .add(

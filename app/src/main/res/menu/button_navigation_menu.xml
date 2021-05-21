@@ -7,14 +7,14 @@
         android:icon="@drawable/ic_baseline_shopping_bag_24"/>
 
     <item
-        android:id="@+id/fragment23"
+        android:id="@+id/logInFragment"
         android:title="Usuario"
         android:icon="@drawable/ic_baseline_person_24"/>
 
 
 
     <item
-        android:id="@+id/logInFragment"
+        android:id="@+id/cartFragment"
         android:title="Carrito"
         android:icon="@drawable/ic_baseline_shopping_cart_24"/>
 

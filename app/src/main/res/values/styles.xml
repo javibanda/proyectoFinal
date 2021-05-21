@@ -24,4 +24,10 @@
         <item name="android:fontFamily">serif</item>
         <item name="android:textColor">@color/grey_disabled</item>
     </style>
+
+    <style name="customRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/custom_rating_stars</item>
+        <item name="android:minHeight">300dip</item>
+        <item name="android:maxHeight">500dip</item>
+    </style>
 </resources>

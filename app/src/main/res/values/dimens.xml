@@ -2,4 +2,5 @@
 <resources>
     <dimen name="btn_rounded_corners">27dp</dimen>
     <dimen name="font_small">13sp</dimen>
+    <dimen name="cartHeight">35dp</dimen>
 </resources>

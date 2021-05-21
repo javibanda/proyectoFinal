@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red"></color>
+    <color name="yellow">#f3ff09</color>
 
     <color name="lavanda">#b4aee8</color>
     <color name="rosita">#ffe3fe</color>
@@ -24,5 +25,17 @@
     <color name="nintendo">#f40000</color>
     <color name="xbox">#54c202</color>
     <color name="xboxSeriesX">#155724</color>
+
+
+
+
+    <color name="azulOscuro">#212159</color>
+    <color name="cinza">#aaaaaa</color>
+    <color name="amarillo">#f2bc25</color>
+    <color name="verde">#4dae51</color>
+    <color name="rojo">#ba0001</color>
+    <color name="azulClaro">#2096f3</color>
+
+
 
 </resources>

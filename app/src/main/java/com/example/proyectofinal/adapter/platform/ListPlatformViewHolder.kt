@@ -4,16 +4,13 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
-import androidx.navigation.compose.navArgument
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.navArgs
 import com.example.proyectofinal.R
 import com.example.proyectofinal.adapter.base.BaseViewHolder
 import com.example.proyectofinal.data.Platform
 import com.example.proyectofinal.extensions.loadUrl
-import com.example.proyectofinal.fragments.listPlatform.ListPlatformFragmentArgs
-import com.example.proyectofinal.fragments.listPlatform.ListPlatformFragmentDirections
+import com.example.proyectofinal.fragments.ListPlatformFragmentArgs
+import com.example.proyectofinal.fragments.ListPlatformFragmentDirections
 import com.example.proyectofinal.util.NavOptions
 
 class ListPlatformViewHolder (itemView: View) : BaseViewHolder(itemView) {

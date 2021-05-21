@@ -6,7 +6,7 @@
     app:startDestination="@id/categoryFragment">
     <fragment
         android:id="@+id/categoryFragment"
-        android:name="com.example.proyectofinal.fragments.category.ListCategoryFragment"
+        android:name="com.example.proyectofinal.fragments.ListCategoryFragment"
         android:label="fragment_category"
         tools:layout="@layout/fragment_category">
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/listPlatformFragment"
-        android:name="com.example.proyectofinal.fragments.listPlatform.ListPlatformFragment"
+        android:name="com.example.proyectofinal.fragments.ListPlatformFragment"
         android:label="fragment_list_platform"
         tools:layout="@layout/fragment_list_platform">
         <argument
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/listProductFragment"
-        android:name="com.example.proyectofinal.fragments.listProduct.ListProductFragment"
+        android:name="com.example.proyectofinal.fragments.ListProductFragment"
         android:label="fragment_list_product"
         tools:layout="@layout/fragment_list_product">
         <argument
@@ -42,18 +42,16 @@
     </fragment>
     <fragment
         android:id="@+id/productFragment"
-        android:name="com.example.proyectofinal.fragments.product.ProductFragment"
+        android:name="com.example.proyectofinal.fragments.ProductFragment"
         android:label="fragment_product"
         tools:layout="@layout/fragment_product">
         <argument
             android:name="idProduct"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_productFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/fragment23"
-        android:name="com.example.proyectofinal.fragments.Fragment2"
-        android:label="fragment_2"
-        tools:layout="@layout/fragment_2" />
     <fragment
         android:id="@+id/logInFragment"
         android:name="com.example.proyectofinal.fragments.LogInFragment"
@@ -62,6 +60,13 @@
         <action
             android:id="@+id/action_logInFragment_to_listUserFragment"
             app:destination="@id/listUserFragment" />
+        <action
+            android:id="@+id/action_logInFragment_to_checkInFragment"
+            app:destination="@id/checkInFragment" />
+        <argument
+            android:name="back"
+            android:defaultValue="false"
+            app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/listUserFragment"
@@ -71,5 +76,52 @@
         <action
             android:id="@+id/action_listUserFragment_to_logInFragment"
             app:destination="@id/logInFragment" />
+        <action
+            android:id="@+id/action_listUserFragment_to_historyOrdersFragment"
+            app:destination="@id/historyOrdersFragment" />
+        <action
+            android:id="@+id/action_listUserFragment_to_listFavoritesFragment"
+            app:destination="@id/listFavoritesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkInFragment"
+        android:name="com.example.proyectofinal.fragments.CheckInFragment"
+        android:label="fragment_check_in"
+        tools:layout="@layout/fragment_check_in" />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.proyectofinal.fragments.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/historyOrdersFragment"
+        android:name="com.example.proyectofinal.fragments.HistoryOrdersFragment"
+        android:label="fragment_history_orders"
+        tools:layout="@layout/fragment_history_orders" >
+        <action
+            android:id="@+id/action_historyOrdersFragment_to_listCartFragment"
+            app:destination="@id/listCartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listCartFragment"
+        android:name="com.example.proyectofinal.fragments.ListCartFragment"
+        android:label="fragment_list_cart"
+        tools:layout="@layout/fragment_list_cart" >
+        <argument
+            android:name="id_order"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/listFavoritesFragment"
+        android:name="com.example.proyectofinal.fragments.ListFavoritesFragment"
+        android:label="fragment_list_favorites"
+        tools:layout="@layout/fragment_list_favorites" >
+        <action
+            android:id="@+id/action_listFavoritesFragment_to_productFragment"
+            app:destination="@id/productFragment" />
     </fragment>
 </navigation>

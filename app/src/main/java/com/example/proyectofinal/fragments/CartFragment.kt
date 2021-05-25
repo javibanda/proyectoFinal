@@ -94,10 +94,7 @@ class CartFragment : Fragment(), OnItemClickListener {
             if (LocalCart.isEmpty()){
                 SetToast.set("No hay ningun producto en el carrito", context)
             }else{
-                DataManager.insertIntoOrder()
-                LocalCart.clear()
-                recyclerViewCart.adapter?.notifyDataSetChanged()
-                updateTotalPrice()
+                navigateToOrderFragment()
             }
         }
     }
@@ -116,5 +113,11 @@ class CartFragment : Fragment(), OnItemClickListener {
     private fun updateTotalPrice(){
         val totalPrice = getPriceString()
         txtTotalCart.text = "TOTAL:       $totalPrice€"
+    }
+
+    private fun navigateToOrderFragment(){
+        NavHostFragment.findNavController(this).navigate(
+            action.actionCartFragmentToOrderFragment()
+        )
     }
 }

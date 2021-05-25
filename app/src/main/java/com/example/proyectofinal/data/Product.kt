@@ -10,10 +10,18 @@ data class Product(
         val price: Float,
         val category: Category,
         val platform: Platform,
-        val rating: Float,
-        val numRating: Int,
+        var rating: Float,
+        var numRating: Int,
         val listImg: List<ProductImg>
         ){
+
+        fun getRatingString(): String{
+                return if(numRating == 0){
+                        "N/R"
+                }else{
+                        rating.setFormatFloat()
+                }
+        }
 
         override fun toString() =
                 "Product(id=$id," +

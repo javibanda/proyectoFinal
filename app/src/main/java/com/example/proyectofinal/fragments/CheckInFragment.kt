@@ -137,11 +137,10 @@ class CheckInFragment : Fragment() {
         if(!dniIsValid()){
             return false
         }
-        //validar la ñ
-        if(!isValid(tiName.editText!!, "([a-zA-Z',.-]+( [a-zA-Z',.-]+)*){2,30}", getString(R.string.nameInput))){
+        if(!isValid(tiName.editText!!, "([a-zA-ZáéíóúÁÉÍÓÚÑñ',.-]+( [a-zA-ZáéíóúÁÉÍÓÚÑñ',.-]+)*){2,30}", getString(R.string.nameInput))){
             return false
         }
-        if(!isValid(tiLastName.editText!!, "([a-zA-Z',.-]+( [a-zA-Z',.-]+)*){2,30}", getString(R.string.lastNameInput))){
+        if(!isValid(tiLastName.editText!!, "([a-zA-ZáéíóúÁÉÍÓÚÑñ',.-]+( [a-zA-ZáéíóúÁÉÍÓÚÑñ',.-]+)*){2,30}", getString(R.string.lastNameInput))){
             return false
         }
         if(!isValid(tiEmail.editText!!, "[a-z.0-9]+[@]{1}[a-z.]+[.]{1}[a-z]+", getString(R.string.emailInput))){
@@ -188,7 +187,7 @@ class CheckInFragment : Fragment() {
         val alertDialog: AlertDialog = builder.create()
         alertDialog.show()
     }
-    //validar el dni
+
     private fun dniIsValid():Boolean{
         return if(isValid(tiDni.editText!!, "[0-9]{8}[A-Za-z]{1}", "dni")){
             val dniLeters = "TRWAGMYFPDXBNJZSQVHLCKE"

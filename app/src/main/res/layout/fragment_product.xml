@@ -145,16 +145,16 @@
                 style="@style/MainLettersNormal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="28dp"
                 android:text="Han pasado 26 años desde que The Legend of Zelda: Link's Awakening saliera a la venta para Game Boy; ahora llega a Nintendo Switch como una aventura renovada.
 
 Por culpa de una terrible tormenta, Link naufraga y acaba llegando a la costa de la misteriosa Isla Koholint. Si quiere regresar a casa, el valiente héroe deberá superar mazmorras desafiantes y enfrentarse a monstruos espeluznantes."
                 android:textAlignment="textStart"
                 android:textSize="17dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
 
             <Button
                 android:id="@+id/btnBuyProduct"
@@ -190,12 +190,13 @@ Por culpa de una terrible tormenta, Link naufraga y acaba llegando a la costa de
                 app:layout_constraintGuide_begin="8dp" />
 
             <TextView
-                android:textSize="20dp"
-                android:layout_marginTop="30dp"
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MEDIA DEL PRODUCTO"
+                android:layout_marginTop="30dp"
+                android:text="MEDIA DEL PRODUCTO:"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
                 app:layout_constraintTop_toBottomOf="@+id/btnBuyProduct" />
 
@@ -206,6 +207,17 @@ Por culpa de una terrible tormenta, Link naufraga y acaba llegando a la costa de
                 android:text="VALORAR"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
                 app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+
+            <TextView
+                android:id="@+id/txtRate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="30dp"
+                android:text="TextView"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="@+id/guideline3"
+                app:layout_constraintTop_toBottomOf="@+id/btnBuyProduct" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

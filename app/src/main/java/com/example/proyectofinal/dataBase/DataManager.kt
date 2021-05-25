@@ -1,11 +1,10 @@
 package com.example.proyectofinal.dataBase
 
-import android.util.Log
 import android.widget.EditText
 import com.example.proyectofinal.data.*
 import com.example.proyectofinal.data.cart.Cart
 import com.example.proyectofinal.data.cart.LocalCart
-import com.example.proyectofinal.dataBase.SqlConection.SqlConection.getToken
+import com.example.proyectofinal.dataBase.SqlConnection.SqlConnection.getToken
 import com.example.proyectofinal.extensions.toLowerCaseDefaultLocale
 import com.example.proyectofinal.extensions.toUpperCaseDefaultLocale
 import com.example.proyectofinal.util.Date
@@ -428,7 +427,7 @@ object DataManager {
     }
 
 
-    fun insertIntoOrder() {
+    fun insertIntoOrder(street: String, id_city: Int) {
         with(connection) {
             val prepareSqlConnection = prepareStatement(
                 """INSERT INTO orders (date, time,  price_products, price_delivery, total_price, id_person, id_city, street)
@@ -442,8 +441,8 @@ object DataManager {
                 setFloat(4, LocalCart.getDeliveryPrice())
                 setFloat(5, LocalCart.getTotalPrice())
                 setInt(6, User.getUser()?.id!!)
-                setInt(7, User.getUser()?.city!!.id)
-                setString(8, "Avenida Santa Cruz de tenerife")
+                setInt(7, id_city)
+                setString(8, street)
 
 
                 execute()
@@ -456,12 +455,12 @@ object DataManager {
     private fun insertIntoProducts() {
         for (product in LocalCart.getProducts()) {
             with(connection) {
-                val prepareSqlConection = prepareStatement(
+                val prepareSqlConnection = prepareStatement(
                     """INSERT INTO product_order(id_order, id_product)
                                 |VALUES (?, ?)
                             """.trimMargin()
                 )
-                with(prepareSqlConection) {
+                with(prepareSqlConnection) {
                     setInt(1, getLastOrder())
                     setInt(2, product.id)
                     execute()

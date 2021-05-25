@@ -103,7 +103,7 @@ class ProductFragment : Fragment() {
             }else{
                 SetToast.set("Producto valorado", context)
                 setRate((ratingBar.rating * 2).toInt(), product!!, getUser()!!)
-
+                txtRate.text = getRate(product!!).setFormatFloat()
                 disableRatingBar()
                 ratingBar.rating = getRate(product!!)/2
             }

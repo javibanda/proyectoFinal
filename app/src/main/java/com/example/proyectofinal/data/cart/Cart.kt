@@ -1,14 +1,12 @@
 package com.example.proyectofinal.data.cart
-
-import android.util.Log
 import com.example.proyectofinal.data.Product
 import com.example.proyectofinal.extensions.setFormatFloat
 
 open class Cart(){
 
     private val listDataCart = ArrayList<DataCart>()
-    private var price: Float = 0f
     private val listProduct = ArrayList<Product>()
+    private var price: Float = 0f
 
     fun add(product: Product, add: Int){
         price += product.price * add
@@ -38,6 +36,11 @@ open class Cart(){
 
     fun getProducts() = listProduct
 
+    fun getPriceString() = price.setFormatFloat()
+
+    fun getTotalPriceString() = getTotalPrice().setFormatFloat()
+
+    fun getDeliveryPriceString() = getDeliveryPrice().setFormatFloat()
 
     private fun contains(product: Product): Int{
         var contains = -1
@@ -58,8 +61,6 @@ open class Cart(){
     }
 
     fun getPrice() = price
-
-    fun getPriceString() = price.setFormatFloat()
 
     fun remove(position: Int){
         val price = listDataCart[position].getTotalPrice()

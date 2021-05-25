@@ -14,6 +14,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectofinal.R
 import com.example.proyectofinal.data.Product
+import com.example.proyectofinal.data.User
 import com.example.proyectofinal.data.User.getIsConnected
 import com.example.proyectofinal.data.User.getUser
 import com.example.proyectofinal.data.cart.LocalCart
@@ -24,6 +25,7 @@ import com.example.proyectofinal.dataBase.DataManager.insertIntoFavorites
 import com.example.proyectofinal.dataBase.DataManager.isRated
 import com.example.proyectofinal.dataBase.DataManager.setRate
 import com.example.proyectofinal.extensions.loadUrl
+import com.example.proyectofinal.extensions.setFormatFloat
 import com.example.proyectofinal.util.SetToast
 
 
@@ -36,6 +38,7 @@ class ProductFragment : Fragment() {
     private lateinit var txtPrice1: TextView
     private lateinit var txtPrice2: TextView
     private lateinit var txtDetails: TextView
+    private lateinit var txtRate: TextView
     private lateinit var recyclerView: RecyclerView
     private lateinit var imgProduct: ImageView
     private lateinit var btnBuy: Button
@@ -60,6 +63,7 @@ class ProductFragment : Fragment() {
         txtDetails = view.findViewById(R.id.txtDetails)
         txtPrice1 = view.findViewById(R.id.txtPrice1)
         txtPrice2 = view.findViewById(R.id.txtPrice2)
+        txtRate = view.findViewById(R.id.txtRate)
         btnBuy = view.findViewById(R.id.btnBuyProduct)
         imgFavorites = view.findViewById(R.id.imgFavorites)
         ratingBar = view.findViewById(R.id.ratingBar)
@@ -76,6 +80,7 @@ class ProductFragment : Fragment() {
         txtDetails.text = product!!.description
         txtName.text = product!!.name.toUpperCase()
         txtPlatform.text = product!!.platform.name
+        txtRate.text = product!!.getRatingString()
 
         setPrice()
         setImg()

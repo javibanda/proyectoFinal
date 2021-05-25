@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_disabled"
+    tools:context=".fragments.OrderFragment">
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/azulClaro"
+        android:gravity="center"
+        android:text="CONFIRMAR PEDIDO"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <TextView
+                android:paddingStart="10dp"
+                android:id="@+id/textView10"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="30dp"
+                android:background="@color/white"
+                android:text="Productos:"
+                app:layout_constraintEnd_toStartOf="@+id/guideline14"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:paddingStart="10dp"
+                android:id="@+id/textView14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:background="@color/white"
+                android:text="Envío:"
+                app:layout_constraintEnd_toStartOf="@+id/guideline14"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+            <TextView
+                android:id="@+id/txtPriceProductsOrder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="24dp"
+                android:background="@color/white"
+                android:text="30€"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline14"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtPriceDeliveryOrder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:background="@color/white"
+                android:text="0,20€"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView14"
+                app:layout_constraintTop_toBottomOf="@+id/txtPriceProductsOrder" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="24dp"
+                android:background="@color/white"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:text="Importe total:"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/guideline14"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+            <TextView
+
+                android:paddingTop="10dp"
+                android:id="@+id/txtPriceTotalOrder"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="24dp"
+                android:text="30,20€"
+                android:textStyle="bold"
+                android:textColor="@color/azulOscuro"
+                android:background="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline14"
+                app:layout_constraintTop_toBottomOf="@+id/txtPriceDeliveryOrder" />
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="300dp"
+                android:text="DIRECCIÓN DEL ENVÍO"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="0dp"
+                android:layout_height="230dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:background="@color/white"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+            <TextView
+
+
+                android:id="@+id/textView19"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="28dp"
+                android:background="@drawable/spinner_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+            <Spinner
+                android:id="@+id/spinnerRegionOrder"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="8dp"
+
+                android:layout_marginEnd="28dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="28dp"
+                android:background="@drawable/spinner_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+
+            <Spinner
+                android:id="@+id/spinnerCityOrder"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="28dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+            <Button
+                android:id="@+id/btnBuyOrder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="24dp"
+                android:text="COMPRAR"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textView22"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="28dp"
+                android:background="@drawable/spinner_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView20" >
+
+                <EditText
+                    android:id="@+id/etStreet"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Introduce la calle"/>
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
